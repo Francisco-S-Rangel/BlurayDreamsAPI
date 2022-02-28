@@ -8,6 +8,8 @@ namespace BlurayDreamsAPI.Models
 {
     public class EnderecoCobranca
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         public string CEP { get; set; }
         [Required]

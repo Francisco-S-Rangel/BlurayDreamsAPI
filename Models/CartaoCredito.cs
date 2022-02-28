@@ -9,6 +9,8 @@ namespace BlurayDreamsAPI.Models
 {
     public class CartaoCredito
     {
+        [Key]
+        public int Id { get; set; }
         [Required]
         public string NumeroCartao { get; set; }
         [Required]
