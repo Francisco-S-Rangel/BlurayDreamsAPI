@@ -10,9 +10,11 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
 builder.Services.AddEntityFrameworkNpgsql(
     .AddDbContext<BlurayDreamsContexto> options =>
-    options.UseNpgsql("DefaultConnection"));
+    options.UseNpgsql("DevConnection"));
     );
 
 var app = builder.Build();
