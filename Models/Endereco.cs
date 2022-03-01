@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace BlurayDreamsAPI.Models
 {
-    public class EnderecoCobranca
+    public class Endereco
     {
         [Key]
         public int Id { get; set; }
+        [Required]
+        public int ClienteId { get; set; }
         [Required]
         public string CEP { get; set; }
         [Required]
@@ -28,5 +30,6 @@ namespace BlurayDreamsAPI.Models
         public string Pais { get; set; }
         [Required]
         public string Numero { get; set; }
+        public Cliente Cliente  { get; set; }
     }
 }
