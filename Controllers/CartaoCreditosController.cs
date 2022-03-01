@@ -13,47 +13,47 @@ namespace BlurayDreamsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EnderecoesController : ControllerBase
+    public class CartaoCreditosController : ControllerBase
     {
         private readonly BlurayDreamsContexto _context;
 
-        public EnderecoesController(BlurayDreamsContexto context)
+        public CartaoCreditosController(BlurayDreamsContexto context)
         {
             _context = context;
         }
 
-        // GET: api/Enderecoes
+        // GET: api/CartaoCreditoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Endereco>>> GetEnderecos()
+        public async Task<ActionResult<IEnumerable<CartaoCredito>>> GetCartaoCreditos()
         {
-            return await _context.Enderecos.ToListAsync();
+            return await _context.CartaoCreditos.ToListAsync();
         }
 
-        // GET: api/Enderecoes/5
+        // GET: api/CartaoCreditoes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Endereco>> GetEndereco(int id)
+        public async Task<ActionResult<CartaoCredito>> GetCartaoCredito(int id)
         {
-            var endereco = await _context.Enderecos.FindAsync(id);
+            var cartaoCredito = await _context.CartaoCreditos.FindAsync(id);
 
-            if (endereco == null)
+            if (cartaoCredito == null)
             {
                 return NotFound();
             }
 
-            return endereco;
+            return cartaoCredito;
         }
 
-        // PUT: api/Enderecoes/5
+        // PUT: api/CartaoCreditoes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEndereco(int id, Endereco endereco)
+        public async Task<IActionResult> PutCartaoCredito(int id, CartaoCredito cartaoCredito)
         {
-            if (id != endereco.Id)
+            if (id != cartaoCredito.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(endereco).State = EntityState.Modified;
+            _context.Entry(cartaoCredito).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace BlurayDreamsAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EnderecoExists(id))
+                if (!CartaoCreditoExists(id))
                 {
                     return NotFound();
                 }
@@ -74,36 +74,36 @@ namespace BlurayDreamsAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Enderecoes
+        // POST: api/CartaoCreditoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Endereco>> PostEndereco(Endereco endereco)
+        public async Task<ActionResult<CartaoCredito>> PostCartaoCredito(CartaoCredito cartaoCredito)
         {
-            _context.Enderecos.Add(endereco);
+            _context.CartaoCreditos.Add(cartaoCredito);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetEndereco", new { id = endereco.Id }, endereco);
+            return CreatedAtAction("GetCartaoCredito", new { id = cartaoCredito.Id }, cartaoCredito);
         }
 
-        // DELETE: api/Enderecoes/5
+        // DELETE: api/CartaoCreditoes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteEndereco(int id)
+        public async Task<IActionResult> DeleteCartaoCredito(int id)
         {
-            var endereco = await _context.Enderecos.FindAsync(id);
-            if (endereco == null)
+            var cartaoCredito = await _context.CartaoCreditos.FindAsync(id);
+            if (cartaoCredito == null)
             {
                 return NotFound();
             }
 
-            _context.Enderecos.Remove(endereco);
+            _context.CartaoCreditos.Remove(cartaoCredito);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool EnderecoExists(int id)
+        private bool CartaoCreditoExists(int id)
         {
-            return _context.Enderecos.Any(e => e.Id == id);
+            return _context.CartaoCreditos.Any(e => e.Id == id);
         }
     }
 }
