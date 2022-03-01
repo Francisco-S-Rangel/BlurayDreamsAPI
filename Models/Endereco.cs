@@ -30,6 +30,5 @@ namespace BlurayDreamsAPI.Models
         public string Pais { get; set; }
         [Required]
         public string Numero { get; set; }
-        public Cliente Cliente  { get; set; }
     }
 }

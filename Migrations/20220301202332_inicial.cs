@@ -51,19 +51,13 @@ namespace BlurayDreamsAPI.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ClienteId = table.Column<int>(type: "integer", nullable: false),
                     NumeroCartao = table.Column<string>(type: "text", nullable: false),
-                    BandeiraCartaoId = table.Column<int>(type: "integer", nullable: false),
+                    BandeiraCartao = table.Column<string>(type: "text", nullable: false),
                     CVV = table.Column<string>(type: "text", nullable: false),
                     NomeTitular = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CartaoCreditos", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CartaoCreditos_BandeiraCartaos_BandeiraCartaoId",
-                        column: x => x.BandeiraCartaoId,
-                        principalTable: "BandeiraCartaos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CartaoCreditos_Clientes_ClienteId",
                         column: x => x.ClienteId,
@@ -101,11 +95,6 @@ namespace BlurayDreamsAPI.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartaoCreditos_BandeiraCartaoId",
-                table: "CartaoCreditos",
-                column: "BandeiraCartaoId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CartaoCreditos_ClienteId",
                 table: "CartaoCreditos",
                 column: "ClienteId");
@@ -119,13 +108,13 @@ namespace BlurayDreamsAPI.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BandeiraCartaos");
+
+            migrationBuilder.DropTable(
                 name: "CartaoCreditos");
 
             migrationBuilder.DropTable(
                 name: "Enderecos");
-
-            migrationBuilder.DropTable(
-                name: "BandeiraCartaos");
 
             migrationBuilder.DropTable(
                 name: "Clientes");

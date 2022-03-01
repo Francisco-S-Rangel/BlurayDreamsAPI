@@ -16,12 +16,10 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public string NumeroCartao { get; set; }
         [Required]
-        public int BandeiraCartaoId { get; set; }
+        public string BandeiraCartao { get; set; }
         [Required]
         public string CVV { get; set; }
         [Required]
         public string NomeTitular { get; set; }
-        public BandeiraCartao BandeiraCartao { get; set; }
-        public Cliente Cliente { get; set; }
     }
 }
