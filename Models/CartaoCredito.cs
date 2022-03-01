@@ -9,15 +9,19 @@ namespace BlurayDreamsAPI.Models
 {
     public class CartaoCredito
     {
-        [Key]
+         [Key]
         public int Id { get; set; }
+        [Required]
+        public int ClienteId { get; set; }
         [Required]
         public string NumeroCartao { get; set; }
         [Required]
-        public string BandeiraCartao { get; set; }
+        public int BandeiraCartaoId { get; set; }
         [Required]
         public string CVV { get; set; }
         [Required]
         public string NomeTitular { get; set; }
+        public BandeiraCartao BandeiraCartao { get; set; }
+        public Cliente Cliente { get; set; }
     }
 }

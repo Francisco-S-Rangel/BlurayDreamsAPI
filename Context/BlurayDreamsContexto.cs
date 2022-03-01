@@ -17,8 +17,7 @@ namespace BlurayDreamsAPI.Context
         }
 
         public DbSet<Cliente>Clientes { get; set; }
-        public DbSet<EnderecoCobranca> EnderecoCobrancas { get; set; }
-        public DbSet<EnderecoEntrega> EnderecoEntregas { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
         public DbSet<CartaoCredito> CartaoCreditos { get; set; }
     }
 }
