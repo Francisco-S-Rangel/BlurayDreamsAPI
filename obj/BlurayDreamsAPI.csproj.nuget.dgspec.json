@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Francisco Rangel\\Documents\\Les\\BlurayDreamsAPI\\BlurayDreamsAPI.csproj": {}
+    "C:\\Users\\Matheus\\Documents\\GitHub\\BlurayDreamsAPI\\BlurayDreamsAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Francisco Rangel\\Documents\\Les\\BlurayDreamsAPI\\BlurayDreamsAPI.csproj": {
+    "C:\\Users\\Matheus\\Documents\\GitHub\\BlurayDreamsAPI\\BlurayDreamsAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Francisco Rangel\\Documents\\Les\\BlurayDreamsAPI\\BlurayDreamsAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Matheus\\Documents\\GitHub\\BlurayDreamsAPI\\BlurayDreamsAPI.csproj",
         "projectName": "BlurayDreamsAPI",
-        "projectPath": "C:\\Users\\Francisco Rangel\\Documents\\Les\\BlurayDreamsAPI\\BlurayDreamsAPI.csproj",
-        "packagesPath": "C:\\Users\\Francisco Rangel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Francisco Rangel\\Documents\\Les\\BlurayDreamsAPI\\obj\\",
+        "projectPath": "C:\\Users\\Matheus\\Documents\\GitHub\\BlurayDreamsAPI\\BlurayDreamsAPI.csproj",
+        "packagesPath": "C:\\Users\\Matheus\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Matheus\\Documents\\GitHub\\BlurayDreamsAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Francisco Rangel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Matheus\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -87,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
