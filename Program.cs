@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
 builder.Services.AddDbContext<BlurayDreamsContexto>(options =>
-   options.UseNpgsql("DbConnection"));
+   options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection")));
 
 var app = builder.Build();
 
