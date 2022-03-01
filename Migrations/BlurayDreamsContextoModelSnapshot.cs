@@ -47,8 +47,9 @@ namespace BlurayDreamsAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BandeiraCartaoId")
-                        .HasColumnType("integer");
+                    b.Property<string>("BandeiraCartao")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("CVV")
                         .IsRequired()
@@ -66,8 +67,6 @@ namespace BlurayDreamsAPI.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BandeiraCartaoId");
 
                     b.HasIndex("ClienteId");
 
@@ -174,32 +173,20 @@ namespace BlurayDreamsAPI.Migrations
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.CartaoCredito", b =>
                 {
-                    b.HasOne("BlurayDreamsAPI.Models.BandeiraCartao", "BandeiraCartao")
-                        .WithMany()
-                        .HasForeignKey("BandeiraCartaoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("BlurayDreamsAPI.Models.Cliente", "Cliente")
+                    b.HasOne("BlurayDreamsAPI.Models.Cliente", null)
                         .WithMany("CartaoCreditos")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("BandeiraCartao");
-
-                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Endereco", b =>
                 {
-                    b.HasOne("BlurayDreamsAPI.Models.Cliente", "Cliente")
+                    b.HasOne("BlurayDreamsAPI.Models.Cliente", null)
                         .WithMany("Enderecos")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Cliente", b =>
