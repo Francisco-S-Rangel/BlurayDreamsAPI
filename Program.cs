@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using BlurayDreamsAPI.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,11 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+
+builder.Services.AddDbContext<BlurayDreamsContexto>(options =>
+   options.UseNpgsql(configuration["ConnectionStrings:DbConnection"]));
 
 var app = builder.Build();
 
