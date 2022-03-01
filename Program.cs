@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using BlurayDreamsAPI.Context;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +14,7 @@ builder.Services.AddSwaggerGen();
 IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
 builder.Services.AddDbContext<BlurayDreamsContexto>(options =>
-   options.UseNpgsql(configuration["ConnectionStrings:DbConnection"]));
+   options.UseNpgsql("DbConnection"));
 
 var app = builder.Build();
 
