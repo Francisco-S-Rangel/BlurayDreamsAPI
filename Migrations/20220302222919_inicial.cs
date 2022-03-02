@@ -67,7 +67,7 @@ namespace BlurayDreamsAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Enderecos",
+                name: "EnderecoCobrancas",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -85,9 +85,39 @@ namespace BlurayDreamsAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enderecos", x => x.Id);
+                    table.PrimaryKey("PK_EnderecoCobrancas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Enderecos_Clientes_ClienteId",
+                        name: "FK_EnderecoCobrancas_Clientes_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Clientes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EnderecoEntregas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ClienteId = table.Column<int>(type: "integer", nullable: false),
+                    CEP = table.Column<string>(type: "text", nullable: false),
+                    TipoResidencia = table.Column<string>(type: "text", nullable: false),
+                    Logradouro = table.Column<string>(type: "text", nullable: false),
+                    TipoLogradouro = table.Column<string>(type: "text", nullable: false),
+                    Bairro = table.Column<string>(type: "text", nullable: false),
+                    Cidade = table.Column<string>(type: "text", nullable: false),
+                    Estado = table.Column<string>(type: "text", nullable: false),
+                    Pais = table.Column<string>(type: "text", nullable: false),
+                    Numero = table.Column<string>(type: "text", nullable: false),
+                    Apelido = table.Column<string>(type: "text", nullable: false),
+                    Observacao = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EnderecoEntregas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_EnderecoEntregas_Clientes_ClienteId",
                         column: x => x.ClienteId,
                         principalTable: "Clientes",
                         principalColumn: "Id",
@@ -100,8 +130,13 @@ namespace BlurayDreamsAPI.Migrations
                 column: "ClienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enderecos_ClienteId",
-                table: "Enderecos",
+                name: "IX_EnderecoCobrancas_ClienteId",
+                table: "EnderecoCobrancas",
+                column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EnderecoEntregas_ClienteId",
+                table: "EnderecoEntregas",
                 column: "ClienteId");
         }
 
@@ -114,7 +149,10 @@ namespace BlurayDreamsAPI.Migrations
                 name: "CartaoCreditos");
 
             migrationBuilder.DropTable(
-                name: "Enderecos");
+                name: "EnderecoCobrancas");
+
+            migrationBuilder.DropTable(
+                name: "EnderecoEntregas");
 
             migrationBuilder.DropTable(
                 name: "Clientes");
