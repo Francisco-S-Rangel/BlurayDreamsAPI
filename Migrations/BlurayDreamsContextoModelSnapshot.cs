@@ -117,7 +117,7 @@ namespace BlurayDreamsAPI.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("BlurayDreamsAPI.Models.Endereco", b =>
+            modelBuilder.Entity("BlurayDreamsAPI.Models.EnderecoCobranca", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -168,7 +168,68 @@ namespace BlurayDreamsAPI.Migrations
 
                     b.HasIndex("ClienteId");
 
-                    b.ToTable("Enderecos");
+                    b.ToTable("EnderecoCobrancas");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.EnderecoEntrega", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Apelido")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Bairro")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CEP")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Cidade")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Logradouro")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Numero")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Observacao")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Pais")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TipoLogradouro")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TipoResidencia")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("EnderecoEntregas");
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.CartaoCredito", b =>
@@ -180,10 +241,19 @@ namespace BlurayDreamsAPI.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BlurayDreamsAPI.Models.Endereco", b =>
+            modelBuilder.Entity("BlurayDreamsAPI.Models.EnderecoCobranca", b =>
                 {
                     b.HasOne("BlurayDreamsAPI.Models.Cliente", null)
-                        .WithMany("Enderecos")
+                        .WithMany("EnderecoCobrancas")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.EnderecoEntrega", b =>
+                {
+                    b.HasOne("BlurayDreamsAPI.Models.Cliente", null)
+                        .WithMany("EnderecoEntregas")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -193,7 +263,9 @@ namespace BlurayDreamsAPI.Migrations
                 {
                     b.Navigation("CartaoCreditos");
 
-                    b.Navigation("Enderecos");
+                    b.Navigation("EnderecoCobrancas");
+
+                    b.Navigation("EnderecoEntregas");
                 });
 #pragma warning restore 612, 618
         }
