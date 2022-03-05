@@ -15,7 +15,7 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public string Nome { get; set; }
         [Required]
-        public DateTime DataNascimento { get; set; }
+        public string DataNascimento { get; set; }
         [Required]
         public string DDD { get; set; }
         [Required]
