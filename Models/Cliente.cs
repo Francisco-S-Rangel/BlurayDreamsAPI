@@ -15,7 +15,7 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public string Nome { get; set; }
         [Required]
-        public DateTime DataNascimento { get; set; }
+        public string DataNascimento { get; set; }
         [Required]
         public string DDD { get; set; }
         [Required]
@@ -29,8 +29,8 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public string Senha { get; set; }
    
-        public List<EnderecoCobranca> EnderecoCobrancas { get; set; }
-        public List<EnderecoEntrega> EnderecoEntregas { get; set; }
+        public List<EnderecoCobranca>? EnderecoCobrancas { get; set; }
+        public List<EnderecoEntrega>? EnderecoEntregas { get; set; }
         public List<CartaoCredito>? CartaoCreditos { get; set; }
 
     }
