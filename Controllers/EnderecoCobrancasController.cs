@@ -101,6 +101,15 @@ namespace BlurayDreamsAPI.Controllers
             return NoContent();
         }
 
+        [Route("{clienteId}/cliente")]
+        [HttpGet]
+        public IActionResult GetEnderecoCobrancaporCliente(int clienteId)
+        {
+            var enderecoCobranca = _context.EnderecoCobrancas.Where(x => x.ClienteId == clienteId).ToList();
+            
+            return Ok(enderecoCobranca);
+        }
+
         private bool EnderecoCobrancaExists(int id)
         {
             return _context.EnderecoCobrancas.Any(e => e.Id == id);
