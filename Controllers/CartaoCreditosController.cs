@@ -101,6 +101,17 @@ namespace BlurayDreamsAPI.Controllers
             return NoContent();
         }
 
+
+        [Route("{clienteId}/cliente")]
+        [HttpGet]
+        public IActionResult CartaoCreditosliente(int clienteId)
+        {
+            var cartaoCreditos = _context.CartaoCreditos.Where(x => x.ClienteId == clienteId).ToList();
+
+            return Ok(cartaoCreditos);
+        }
+
+
         private bool CartaoCreditoExists(int id)
         {
             return _context.CartaoCreditos.Any(e => e.Id == id);
