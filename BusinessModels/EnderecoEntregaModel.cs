@@ -1,46 +1,40 @@
-﻿using BlurayDreamsAPI.BusinessModels;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BlurayDreamsAPI.Models;
 
-namespace BlurayDreamsAPI.Models
+namespace BlurayDreamsAPI.BusinessModels
 {
-    public class EnderecoEntrega
+    public class EnderecoEntregaModel
     {
-        [Key]
         public int Id { get; set; }
-        [Required]
+      
         public int ClienteId { get; set; }
-        [Required]
+        
         public string CEP { get; set; }
-        [Required]
+     
         public string TipoResidencia { get; set; }
-        [Required]
+      
         public string Logradouro { get; set; }
-        [Required]
+       
         public string TipoLogradouro { get; set; }
-        [Required]
+     
         public string Bairro { get; set; }
-        [Required]
+       
         public string Cidade { get; set; }
-        [Required]
+       
         public string Estado { get; set; }
-        [Required]
+      
         public string Pais { get; set; }
-        [Required]
+      
         public string Numero { get; set; }
-        [Required]
+    
         public string Apelido { get; set; }
 
         public string? Observacao { get; set; }
 
         public virtual Cliente? cliente { get; set; }
 
-        public EnderecoEntregaModel toModel()
+        public EnderecoEntrega toEntity()
         {
-            return new EnderecoEntregaModel
+            return new EnderecoEntrega
             {
                 Id = Id,
                 ClienteId = ClienteId,

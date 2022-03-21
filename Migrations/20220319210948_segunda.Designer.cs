@@ -2,6 +2,7 @@
 using BlurayDreamsAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BlurayDreamsAPI.Migrations
 {
     [DbContext(typeof(BlurayDreamsContexto))]
-    partial class BlurayDreamsContextoModelSnapshot : ModelSnapshot
+    [Migration("20220319210948_segunda")]
+    partial class segunda
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -234,13 +236,11 @@ namespace BlurayDreamsAPI.Migrations
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.CartaoCredito", b =>
                 {
-                    b.HasOne("BlurayDreamsAPI.Models.Cliente", "cliente")
+                    b.HasOne("BlurayDreamsAPI.Models.Cliente", null)
                         .WithMany("CartaoCreditos")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("cliente");
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.EnderecoCobranca", b =>
@@ -256,13 +256,11 @@ namespace BlurayDreamsAPI.Migrations
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.EnderecoEntrega", b =>
                 {
-                    b.HasOne("BlurayDreamsAPI.Models.Cliente", "cliente")
+                    b.HasOne("BlurayDreamsAPI.Models.Cliente", null)
                         .WithMany("EnderecoEntregas")
                         .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("cliente");
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Cliente", b =>

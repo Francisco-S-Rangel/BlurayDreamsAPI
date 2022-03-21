@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlurayDreamsAPI.Context;
 using BlurayDreamsAPI.Models;
+using BlurayDreamsAPI.BusinessModels;
 
 namespace BlurayDreamsAPI.Controllers
 {
@@ -46,14 +47,14 @@ namespace BlurayDreamsAPI.Controllers
         // PUT: api/EnderecoEntregas/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutEnderecoEntrega(int id, EnderecoEntrega enderecoEntrega)
+        public async Task<IActionResult> PutEnderecoEntrega(int id, EnderecoEntregaModel enderecoEntrega)
         {
             if (id != enderecoEntrega.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(enderecoEntrega).State = EntityState.Modified;
+            _context.Entry(enderecoEntrega.toEntity()).State = EntityState.Modified;
 
             try
             {
@@ -77,9 +78,9 @@ namespace BlurayDreamsAPI.Controllers
         // POST: api/EnderecoEntregas
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<EnderecoEntrega>> PostEnderecoEntrega(EnderecoEntrega enderecoEntrega)
+        public async Task<ActionResult<EnderecoEntrega>> PostEnderecoEntrega(EnderecoEntregaModel enderecoEntrega)
         {
-            _context.EnderecoEntregas.Add(enderecoEntrega);
+            _context.EnderecoEntregas.Add(enderecoEntrega.toEntity());
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetEnderecoEntrega", new { id = enderecoEntrega.Id }, enderecoEntrega);
