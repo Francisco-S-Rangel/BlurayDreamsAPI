@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace BlurayDreamsAPI.Models
 {
-    public class Pedido
+    public class Carrinho
     {
         [Key]
         public int Id { get; set; }
         [Required]
         public int ClienteId { get; set; }
         [Required]
+        public virtual Cliente cliente { get; set; }
+
         public List<Produto> Produtos { get; set; }
 
     }

@@ -21,5 +21,6 @@ namespace BlurayDreamsAPI.Context
         public DbSet<EnderecoEntrega> EnderecoEntregas { get; set; }
         public DbSet<CartaoCredito> CartaoCreditos { get; set; }
         public DbSet<BandeiraCartao> BandeiraCartaos { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlurayDreamsAPI.Context;
 using BlurayDreamsAPI.Models;
+using BlurayDreamsAPI.BusinessModels;
 
 namespace BlurayDreamsAPI.Controllers
 {
@@ -46,14 +47,14 @@ namespace BlurayDreamsAPI.Controllers
         // PUT: api/CartaoCreditoes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCartaoCredito(int id, CartaoCredito cartaoCredito)
+        public async Task<IActionResult> PutCartaoCredito(int id, CartaoCreditoModel cartaoCredito)
         {
             if (id != cartaoCredito.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(cartaoCredito).State = EntityState.Modified;
+            _context.Entry(cartaoCredito.toEntity()).State = EntityState.Modified;
 
             try
             {
@@ -77,9 +78,9 @@ namespace BlurayDreamsAPI.Controllers
         // POST: api/CartaoCreditoes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<CartaoCredito>> PostCartaoCredito(CartaoCredito cartaoCredito)
+        public async Task<ActionResult<CartaoCredito>> PostCartaoCredito(CartaoCreditoModel cartaoCredito)
         {
-            _context.CartaoCreditos.Add(cartaoCredito);
+            _context.CartaoCreditos.Add(cartaoCredito.toEntity());
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetCartaoCredito", new { id = cartaoCredito.Id }, cartaoCredito);

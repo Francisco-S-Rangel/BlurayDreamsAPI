@@ -14,47 +14,47 @@ namespace BlurayDreamsAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientesController : ControllerBase
+    public class ProdutosController : ControllerBase
     {
         private readonly BlurayDreamsContexto _context;
 
-        public ClientesController(BlurayDreamsContexto context)
+        public ProdutosController(BlurayDreamsContexto context)
         {
             _context = context;
         }
 
-        // GET: api/Clientes
+        // GET: api/Produtos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Cliente>>> GetClientes()
+        public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
         {
-            return await _context.Clientes.ToListAsync();
+            return await _context.Produtos.ToListAsync();
         }
 
-        // GET: api/Clientes/5
+        // GET: api/Produtos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cliente>> GetCliente(int id)
+        public async Task<ActionResult<Produto>> GetProduto(int id)
         {
-            var cliente = await _context.Clientes.FindAsync(id);
+            var produto = await _context.Produtos.FindAsync(id);
 
-            if (cliente == null)
+            if (produto == null)
             {
                 return NotFound();
             }
 
-            return cliente;
+            return produto;
         }
 
-        // PUT: api/Clientes/5
+        // PUT: api/Produtos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCliente(int id, ClienteModel cliente)
+        public async Task<IActionResult> PutProduto(int id, ProdutoModel produto)
         {
-            if (id != cliente.Id)
+            if (id != produto.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(cliente.toEntity()).State = EntityState.Modified;
+            _context.Entry(produto.toEntity()).State = EntityState.Modified;
 
             try
             {
@@ -62,7 +62,7 @@ namespace BlurayDreamsAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClienteExists(id))
+                if (!ProdutoExists(id))
                 {
                     return NotFound();
                 }
@@ -75,36 +75,36 @@ namespace BlurayDreamsAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Clientes
+        // POST: api/Produtos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Cliente>> PostCliente(ClienteModel cliente)
+        public async Task<ActionResult<Produto>> PostProduto(ProdutoModel produto)
         {
-            _context.Clientes.Add(cliente.toEntity());
+            _context.Produtos.Add(produto.toEntity());
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetCliente", new { id = cliente.Id }, cliente);
+            return CreatedAtAction("GetProduto", new { id = produto.Id }, produto);
         }
 
-        // DELETE: api/Clientes/5
+        // DELETE: api/Produtos/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCliente(int id)
+        public async Task<IActionResult> DeleteProduto(int id)
         {
-            var cliente = await _context.Clientes.FindAsync(id);
-            if (cliente == null)
+            var produto = await _context.Produtos.FindAsync(id);
+            if (produto == null)
             {
                 return NotFound();
             }
 
-            _context.Clientes.Remove(cliente);
+            _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool ClienteExists(int id)
+        private bool ProdutoExists(int id)
         {
-            return _context.Clientes.Any(e => e.Id == id);
+            return _context.Produtos.Any(e => e.Id == id);
         }
     }
 }
