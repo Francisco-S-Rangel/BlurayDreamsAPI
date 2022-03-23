@@ -5,17 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-
 namespace BlurayDreamsAPI.Models
 {
-    public class Cliente
+    public class Funcionario
     {
         [Key]
         public int Id { get; set; }
         [Required]
         public string Nome { get; set; }
         [Required]
-        public string DataNascimento { get; set; }
+        public DateTime DataNascimento { get; set; }
         [Required]
         public string DDD { get; set; }
         [Required]
@@ -28,14 +27,7 @@ namespace BlurayDreamsAPI.Models
         public string Email { get; set; }
         [Required]
         public string Senha { get; set; }
-
-        public virtual Carrinho carrinho { get; set; }
-   
-        public List<EnderecoCobranca> EnderecoCobrancas { get; set; }
-        public List<EnderecoEntrega> EnderecoEntregas { get; set; }
-        public List<CartaoCredito>? CartaoCreditos { get; set; }
-        public List<Pedido>? Pedidos { get; set; }
-
+        [Required]
+        public Boolean Status { get; set; }
     }
-
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlurayDreamsAPI.BusinessModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,9 +15,14 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public int ClienteId { get; set; }
         [Required]
+        public double Desconto { get; set; }
+        [Required]
+        public double Frete { get; set; }
+        [Required]
+        public double PrecoFinal { get; set; }
         public virtual Cliente cliente { get; set; }
 
-        public List<Produto> Produtos { get; set; }
+        public List<Produto>? Produtos { get; set; }
 
     }
 }
