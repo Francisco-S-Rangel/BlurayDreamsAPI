@@ -1,45 +1,38 @@
-﻿using BlurayDreamsAPI.BusinessModels;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BlurayDreamsAPI.Models;
 
-namespace BlurayDreamsAPI.Models
+namespace BlurayDreamsAPI.BusinessModels
 {
-    public class Produto
+    public class ProdutoModel
     {
-        [Key]
         public int Id { get; set; }
-        [Required]
+
         public string Titulo { get; set; }
-        [Required]
+
         public string Img { get; set; }
-        [Required]
+
         public string Tipo { get; set; }
-        [Required]
+
         public string Categoria { get; set; }
-        [Required]
+
         public DateTime Ano { get; set; }
-        [Required]
+
         public string Direcao { get; set; }
-        [Required]
+
         public string Duracao { get; set; }
-        [Required]
+
         public string Produtora { get; set; }
-        [Required]
+
         public string Sinopse { get; set; }
-        [Required]
+
         public Boolean Status { get; set; }
-        [Required]
+
         public double Preco { get; set; }
-        [Required]
+
         public int Estoque { get; set; }
 
-        public ProdutoModel toModel()
+        public Produto toEntity()
         {
-            return new ProdutoModel
+            return new Produto
             {
                 Id = Id,
                 Titulo = Titulo,
@@ -54,11 +47,8 @@ namespace BlurayDreamsAPI.Models
                 Status = Status,
                 Preco = Preco,
                 Estoque = Estoque
-             
 
             };
         }
-
-
     }
 }
