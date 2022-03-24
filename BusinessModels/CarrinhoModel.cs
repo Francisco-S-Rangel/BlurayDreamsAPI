@@ -1,4 +1,5 @@
 ﻿using BlurayDreamsAPI.Models;
+using System.Text.Json.Serialization;
 
 namespace BlurayDreamsAPI.BusinessModels
 {
@@ -9,8 +10,9 @@ namespace BlurayDreamsAPI.BusinessModels
         public double Desconto { get; set; }
         public double Frete { get; set; }
         public double PrecoFinal { get; set; }
+        [JsonIgnore]
         public virtual Cliente? cliente { get; set; }
-
+        [JsonIgnore]
         public List<ProdutoModel>? Produtos { get; set; }
 
         public Carrinho toEntity()
@@ -28,6 +30,7 @@ namespace BlurayDreamsAPI.BusinessModels
             };
 
         }
+
 
     }
 }

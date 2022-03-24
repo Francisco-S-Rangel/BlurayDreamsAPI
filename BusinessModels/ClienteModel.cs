@@ -14,7 +14,8 @@ namespace BlurayDreamsAPI.BusinessModels
             public string Email { get; set; }
             public string Senha { get; set; }
 
-             public virtual Carrinho carrinho { get; set; }
+
+            public  Carrinho? carrinho { get; set; }
 
             public List<EnderecoCobrancaModel>? EnderecoCobrancas { get; set; }
             public List<EnderecoEntregaModel>? EnderecoEntregas { get; set; }
@@ -33,7 +34,7 @@ namespace BlurayDreamsAPI.BusinessModels
                 CPF = CPF,
                 Email = Email,
                 Senha = Senha,
-                carrinho = new Carrinho(),
+                carrinho = new Carrinho(Id),
                 EnderecoCobrancas = EnderecoCobrancas != null ? EnderecoCobrancas.Select(x => x.toEntity()).ToList() : new List<EnderecoCobranca>(),
                 EnderecoEntregas = EnderecoEntregas != null  ? EnderecoEntregas.Select(x => x.toEntity()).ToList() : new List<EnderecoEntrega> (),
                 CartaoCreditos = CartaoCreditos != null  ? CartaoCreditos.Select(x => x.toEntity()).ToList() : new List<CartaoCredito>(),

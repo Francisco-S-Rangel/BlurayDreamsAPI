@@ -1,4 +1,5 @@
 ﻿using BlurayDreamsAPI.Models;
+using System.Text.Json.Serialization;
 
 namespace BlurayDreamsAPI.BusinessModels
 {
@@ -16,6 +17,7 @@ namespace BlurayDreamsAPI.BusinessModels
        
         public string NomeTitular { get; set; }
 
+        [JsonIgnore]
         public virtual Cliente? cliente { get; set; }
 
         public CartaoCredito toEntity()

@@ -29,7 +29,7 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public string Senha { get; set; }
 
-        public virtual Carrinho carrinho { get; set; }
+        public Carrinho carrinho { get; set; }
    
         public List<EnderecoCobranca> EnderecoCobrancas { get; set; }
         public List<EnderecoEntrega> EnderecoEntregas { get; set; }

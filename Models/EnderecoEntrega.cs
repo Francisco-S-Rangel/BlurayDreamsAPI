@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BlurayDreamsAPI.Models
@@ -36,6 +37,8 @@ namespace BlurayDreamsAPI.Models
 
         public string? Observacao { get; set; }
 
+
+        [JsonIgnore]
         public virtual Cliente? cliente { get; set; }
 
         public EnderecoEntregaModel toModel()

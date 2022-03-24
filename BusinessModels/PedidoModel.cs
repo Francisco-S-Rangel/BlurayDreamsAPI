@@ -1,4 +1,5 @@
 ﻿using BlurayDreamsAPI.Models;
+using System.Text.Json.Serialization;
 
 namespace BlurayDreamsAPI.BusinessModels
 {
@@ -12,11 +13,16 @@ namespace BlurayDreamsAPI.BusinessModels
         public double Desconto { get; set; }
         public double Frete { get; set; }
         public double PrecoFinal { get; set; }
+        public string Status { get; set; }
+        [JsonIgnore]
         public virtual Cliente? cliente { get; set; }
+        [JsonIgnore]
         public virtual EnderecoCobranca? enderecoCobranca { get; set; }
+        [JsonIgnore]
         public virtual EnderecoEntrega? enderecoEntrega { get; set; }
+        [JsonIgnore]
         public virtual CartaoCredito? cartaoCredito { get; set; }
-
+        [JsonIgnore]
         public List<ProdutoModel>? Produtos { get; set; }
 
         public Pedido toEntity()
@@ -31,6 +37,7 @@ namespace BlurayDreamsAPI.BusinessModels
                 Desconto = Desconto,
                 Frete = Frete,
                 PrecoFinal = PrecoFinal,
+                Status = Status,
                 cliente = null,
                 enderecoCobranca = null,
                 enderecoEntrega = null,
