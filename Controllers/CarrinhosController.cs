@@ -101,6 +101,14 @@ namespace BlurayDreamsAPI.Controllers
 
             return NoContent();
         }
+        [Route("{clienteId}/cliente")]
+        [HttpGet]
+        public IActionResult GetEnderecoEntregaporCliente(int clienteId)
+        {
+            var carrinho = _context.Carrinho.Where(x => x.ClienteId == clienteId).ToList();
+
+            return Ok(carrinho);
+        }
 
         private bool CarrinhoExists(int id)
         {
