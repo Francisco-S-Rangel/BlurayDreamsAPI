@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BlurayDreamsAPI.Models
 {
-    public class EnderecoCobranca
+    public class Endereco
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public int ClienteId { get; set; }
+        public int FuncionarioId { get; set; }
         [Required]
         public string CEP { get; set; }
         [Required]
@@ -32,29 +31,7 @@ namespace BlurayDreamsAPI.Models
         public string Pais { get; set; }
         [Required]
         public string Numero { get; set; }
-        [JsonIgnore]
-        public virtual Cliente cliente { get; set; }
 
-        public EnderecoCobrancaModel toModel()
-        {
-            return new EnderecoCobrancaModel
-            {
-                Id = Id,
-                ClienteId = ClienteId,
-                CEP = CEP,
-                TipoLogradouro = TipoLogradouro,
-                Logradouro = Logradouro,
-                Bairro = Bairro,
-                Cidade = Cidade,
-                Estado = Estado,
-                Pais = Pais,
-                Numero = Numero,
-                cliente = null,
-                TipoResidencia = TipoResidencia,
-
-            };
-        }
-
+        public virtual Funcionario Funcionario { get; set; }
     }
-    
 }
