@@ -24,14 +24,15 @@ namespace BlurayDreamsAPI.Models
         [JsonIgnore]
         public virtual Cliente? cliente { get; set; }
      
-        public List<Produto>? Produtos { get; set; }
+        public List<CarrinhoProdutos> CarrinhoProduto { get; set; }
 
         public Carrinho() { }
         public Carrinho(int clienteid)
         {
+
             this.ClienteId = clienteid;
             this.cliente = null;
-            this.Produtos = Produtos != null ? Produtos.ToList() : new List<Produto>() {  new Produto()};
+            this.CarrinhoProduto = CarrinhoProduto != null ? CarrinhoProduto.ToList() : new List<CarrinhoProdutos>() {  };
 
         }
     }
