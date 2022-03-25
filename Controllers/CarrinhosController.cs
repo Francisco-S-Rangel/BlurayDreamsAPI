@@ -106,7 +106,7 @@ namespace BlurayDreamsAPI.Controllers
         public IActionResult GetCarrinhoporCliente(int clienteId)
         {
             var carrinho = _context.Carrinho.Where(x => x.ClienteId == clienteId)
-                                            .Include(x => x.Produtos)
+                                            .Include(x => x.CarrinhoProduto)
                                             .FirstOrDefault();
 
             return Ok(carrinho);
