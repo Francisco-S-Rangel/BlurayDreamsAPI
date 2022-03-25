@@ -37,7 +37,28 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public int Estoque { get; set; }
 
-        public ProdutoModel toModel()
+        public Produto() { }
+        public Produto(int id,string titulo,string img,string tipo,string categoria,
+            DateTime ano, string direcao,string duracao,string produtora, string sinopse, Boolean status, double preco
+            , int estoque)
+        {
+            this.Id = id;
+            this.Titulo = titulo;
+            this.Img = img;
+            this.Tipo = tipo;
+            this.Categoria = categoria;
+            this.Ano = ano;
+            this.Direcao = direcao;
+            this.Duracao = duracao;
+            this.Produtora = produtora;
+            this.Sinopse = sinopse;
+            this.Status = status;
+            this.Preco = preco;
+            this.Estoque = estoque;
+
+        }
+
+            public ProdutoModel toModel()
         {
             return new ProdutoModel
             {

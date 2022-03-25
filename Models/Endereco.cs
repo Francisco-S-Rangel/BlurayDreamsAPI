@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace BlurayDreamsAPI.Models
@@ -32,6 +33,27 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public string Numero { get; set; }
 
-        public virtual Funcionario Funcionario { get; set; }
+        [JsonIgnore]
+        public  Funcionario? Funcionario { get; set; }
+
+        public EnderecoModel toModel()
+        {
+            return new EnderecoModel
+            {
+                Id = Id,
+               FuncionarioId = FuncionarioId,
+                CEP = CEP,
+                TipoLogradouro = TipoLogradouro,
+                Logradouro = Logradouro,
+                Bairro = Bairro,
+                Cidade = Cidade,
+                Estado = Estado,
+                Pais = Pais,
+                Numero = Numero,
+                Funcionario = null,
+                TipoResidencia = TipoResidencia,
+
+            };
+        }
     }
 }

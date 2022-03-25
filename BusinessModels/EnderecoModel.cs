@@ -28,5 +28,25 @@ namespace BlurayDreamsAPI.BusinessModels
 
         public virtual Funcionario? Funcionario { get; set; }
 
+        public Endereco toEntity()
+        {
+            return new Endereco
+            {
+                Id = Id,
+                Funcionario = null,
+                CEP = CEP,
+                TipoLogradouro = TipoLogradouro,
+                Logradouro = Logradouro,
+                Bairro = Bairro,
+                Cidade = Cidade,
+                Estado = Estado,
+                Pais = Pais,
+                Numero = Numero,
+                FuncionarioId = FuncionarioId,
+                TipoResidencia = TipoResidencia,
+
+            };
+        }
+
     }
 }

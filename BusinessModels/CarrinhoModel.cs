@@ -12,8 +12,8 @@ namespace BlurayDreamsAPI.BusinessModels
         public double PrecoFinal { get; set; }
         [JsonIgnore]
         public virtual Cliente? cliente { get; set; }
-        [JsonIgnore]
-        public List<ProdutoModel>? Produtos { get; set; }
+       
+        public List<CarrinhoProdutoModel>? CarrinhoProduto { get; set; }
 
         public Carrinho toEntity()
         {
@@ -25,7 +25,7 @@ namespace BlurayDreamsAPI.BusinessModels
                 PrecoFinal = PrecoFinal,
                 Frete = Frete,
                 cliente = null,
-                Produtos = Produtos != null ? Produtos.Select(x => x.toEntity()).ToList() : new List<Produto>(),
+                CarrinhoProduto = CarrinhoProduto != null ? CarrinhoProduto.Select(x => x.toEntity()).ToList() : new List<CarrinhoProdutos>(),
 
             };
 
