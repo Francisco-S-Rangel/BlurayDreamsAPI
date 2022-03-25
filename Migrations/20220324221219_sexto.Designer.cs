@@ -3,6 +3,7 @@ using System;
 using BlurayDreamsAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BlurayDreamsAPI.Migrations
 {
     [DbContext(typeof(BlurayDreamsContexto))]
-    partial class BlurayDreamsContextoModelSnapshot : ModelSnapshot
+    [Migration("20220324221219_sexto")]
+    partial class sexto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -146,61 +148,6 @@ namespace BlurayDreamsAPI.Migrations
                     b.ToTable("Clientes");
                 });
 
-            modelBuilder.Entity("BlurayDreamsAPI.Models.Endereco", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Bairro")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("CEP")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Estado")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("FuncionarioId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Logradouro")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Numero")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Pais")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TipoLogradouro")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TipoResidencia")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FuncionarioId")
-                        .IsUnique();
-
-                    b.ToTable("Endereco");
-                });
-
             modelBuilder.Entity("BlurayDreamsAPI.Models.EnderecoCobranca", b =>
                 {
                     b.Property<int>("Id")
@@ -314,53 +261,6 @@ namespace BlurayDreamsAPI.Migrations
                     b.HasIndex("ClienteId");
 
                     b.ToTable("EnderecoEntregas");
-                });
-
-            modelBuilder.Entity("BlurayDreamsAPI.Models.Funcionario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CPF")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("DDD")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("DataNascimento")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Senha")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Telefone")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TipoTelefone")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Funcionario");
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Pedido", b =>
@@ -501,17 +401,6 @@ namespace BlurayDreamsAPI.Migrations
                     b.Navigation("cliente");
                 });
 
-            modelBuilder.Entity("BlurayDreamsAPI.Models.Endereco", b =>
-                {
-                    b.HasOne("BlurayDreamsAPI.Models.Funcionario", "Funcionario")
-                        .WithOne("Endereco")
-                        .HasForeignKey("BlurayDreamsAPI.Models.Endereco", "FuncionarioId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Funcionario");
-                });
-
             modelBuilder.Entity("BlurayDreamsAPI.Models.EnderecoCobranca", b =>
                 {
                     b.HasOne("BlurayDreamsAPI.Models.Cliente", "cliente")
@@ -596,12 +485,6 @@ namespace BlurayDreamsAPI.Migrations
                     b.Navigation("Pedidos");
 
                     b.Navigation("carrinho")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("BlurayDreamsAPI.Models.Funcionario", b =>
-                {
-                    b.Navigation("Endereco")
                         .IsRequired();
                 });
 

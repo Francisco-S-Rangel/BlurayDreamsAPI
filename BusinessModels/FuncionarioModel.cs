@@ -1,4 +1,6 @@
-﻿namespace BlurayDreamsAPI.BusinessModels
+﻿using BlurayDreamsAPI.Models;
+
+namespace BlurayDreamsAPI.BusinessModels
 {
     public class FuncionarioModel
     {
@@ -12,5 +14,26 @@
         public string Email { get; set; }
         public string Senha { get; set; }
         public Boolean Status { get; set; }
+
+        public EnderecoModel? Endereco { get; set; }
+
+
+        public Funcionario toEntity()
+        {
+            return new Funcionario
+            {
+                Id = Id,
+                Nome = Nome,
+                DataNascimento = DataNascimento,
+                DDD = DDD,
+                Telefone = Telefone,
+                TipoTelefone = TipoTelefone,
+                CPF = CPF,
+                Email = Email,
+                Senha = Senha,
+                Status = Status,
+                Endereco = Endereco != null ? Endereco.toEntity() : new Endereco(),
+            };
+        }
     }
 }

@@ -29,5 +29,7 @@ namespace BlurayDreamsAPI.Models
         public string Senha { get; set; }
         [Required]
         public Boolean Status { get; set; }
+
+        public Endereco Endereco { get; set;}
     }
 }
