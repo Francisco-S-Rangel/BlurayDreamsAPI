@@ -13,7 +13,7 @@ namespace BlurayDreamsAPI.BusinessModels
         [JsonIgnore]
         public virtual Cliente? cliente { get; set; }
        
-        public List<CarrinhoProdutoModel>? Carrinho { get; set; }
+        public List<CarrinhoProdutoModel>? CarrinhoProduto { get; set; }
 
         public Carrinho toEntity()
         {
@@ -25,7 +25,7 @@ namespace BlurayDreamsAPI.BusinessModels
                 PrecoFinal = PrecoFinal,
                 Frete = Frete,
                 cliente = null,
-                CarrinhoProduto = Carrinho != null ? Carrinho.Select(x => x.toEntity()).ToList() : new List<CarrinhoProdutoModel>() { },
+                CarrinhoProduto = CarrinhoProduto != null ? CarrinhoProduto.Select(x => x.toEntity()).ToList() : new List<CarrinhoProdutos>(),
 
             };
 

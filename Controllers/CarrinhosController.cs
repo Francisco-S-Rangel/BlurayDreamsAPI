@@ -107,6 +107,15 @@ namespace BlurayDreamsAPI.Controllers
         {
             var carrinho = _context.Carrinho.Where(x => x.ClienteId == clienteId)
                                             .Include(x => x.CarrinhoProduto)
+                                            .Select(x => new 
+                                            {
+                                                ClienteId = x.ClienteId,
+                                                Id = x.Id,
+                                                Desconto = x.Desconto,
+                                                Frete = x.Frete,
+                                                PrecoFinal = x.PrecoFinal,
+                                                CarrinhoProduto = x.CarrinhoProduto,
+                                            })
                                             .FirstOrDefault();
 
             return Ok(carrinho);
@@ -116,5 +125,36 @@ namespace BlurayDreamsAPI.Controllers
         {
             return _context.Carrinho.Any(e => e.Id == id);
         }
+
+        [Route("{clienteId}/carrinho")]
+        [HttpPost]
+        public IActionResult AddCarrinhoProduto([FromQuery] int produtoId, [FromQuery] int quantidade,int clienteId)
+        {
+            var produto = _context.Produtos.Where(x=> x.Id == produtoId).FirstOrDefault();
+            if (produto == null)
+            {
+                return NotFound();
+            }
+
+            //todo validar se tem produto no carrinho
+            var carrinho = _context.Carrinho.Where(x => x.ClienteId == clienteId).FirstOrDefault();
+
+            var carrinhoProduto = new CarrinhoProdutos()
+            {
+                ProdutoId = produtoId,
+                Quantidade = quantidade,
+                Carrinho = carrinho,
+                CarrinhoId = carrinho.Id,
+                Produto = produto,
+            };
+
+            _context.CarrinhoProdutos.Add(carrinhoProduto);
+            _context.SaveChanges();
+
+            return Ok();
+           
+        }
+
+       
     }
 }
