@@ -128,9 +128,9 @@ namespace BlurayDreamsAPI.Controllers
 
         [Route("{clienteId}/carrinho")]
         [HttpPost]
-        public IActionResult AddCarrinhoProduto([FromQuery] int produtoId, [FromQuery] int quantidade,int clienteId)
+        public IActionResult AddCarrinhoProduto([FromBody] CarrinhoProdutoRequest request, int clienteId)
         {
-            var produto = _context.Produtos.Where(x=> x.Id == produtoId).FirstOrDefault();
+            var produto = _context.Produtos.Where(x=> x.Id == request.produtoId).FirstOrDefault();
             if (produto == null)
             {
                 return NotFound();
@@ -141,8 +141,8 @@ namespace BlurayDreamsAPI.Controllers
 
             var carrinhoProduto = new CarrinhoProdutos()
             {
-                ProdutoId = produtoId,
-                Quantidade = quantidade,
+                ProdutoId = request.produtoId,
+                Quantidade = request.quantidade,
                 Carrinho = carrinho,
                 CarrinhoId = carrinho.Id,
                 Produto = produto,
@@ -155,6 +155,19 @@ namespace BlurayDreamsAPI.Controllers
            
         }
 
-       
+        [Route("{clienteId}/carrinho")]
+        [HttpDelete]
+        public IActionResult DeleteProdutoCarrinho(int produtoId,int clienteId)
+        {
+            var carrinhoProduto = _context.CarrinhoProdutos.Include(x => x.Carrinho)
+                .Where(x => x.ProdutoId == produtoId && x.Carrinho.ClienteId == clienteId).FirstOrDefault();
+
+            _context.CarrinhoProdutos.Remove(carrinhoProduto);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+
     }
 }
