@@ -1,4 +1,5 @@
 ﻿using BlurayDreamsAPI.Models;
+using System.Text.Json.Serialization;
 
 namespace BlurayDreamsAPI.BusinessModels
 {
@@ -25,8 +26,8 @@ namespace BlurayDreamsAPI.BusinessModels
         public string Pais { get; set; }
 
         public string Numero { get; set; }
-
-        public virtual Funcionario? Funcionario { get; set; }
+       
+        public FuncionarioModel? Funcionario { get; set; }
 
         public Endereco toEntity()
         {
