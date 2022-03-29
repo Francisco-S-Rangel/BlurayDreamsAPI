@@ -42,7 +42,7 @@ namespace BlurayDreamsAPI.Models
         [JsonIgnore]
         public virtual CartaoCredito cartaoCredito { get; set; }
         [JsonIgnore]
-        public List<Produto> Produtos { get; set; }
+        public List<PedidoProduto> PedidoProdutos { get; set; }
 
 
     }
