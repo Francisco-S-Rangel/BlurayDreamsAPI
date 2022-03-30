@@ -54,7 +54,7 @@ namespace BlurayDreamsAPI.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(funcionario).State = EntityState.Modified;
+            _context.Entry(funcionario.toEntity()).State = EntityState.Modified;
 
             try
             {
@@ -78,9 +78,9 @@ namespace BlurayDreamsAPI.Controllers
         // POST: api/Funcionarios
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Funcionario>> PostFuncionario(Funcionario funcionario)
+        public async Task<ActionResult<Funcionario>> PostFuncionario(FuncionarioModel funcionario)
         {
-            _context.Funcionario.Add(funcionario);
+            _context.Funcionario.Add(funcionario.toEntity());
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetFuncionario", new { id = funcionario.Id }, funcionario);

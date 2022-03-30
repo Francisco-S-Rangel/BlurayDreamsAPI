@@ -17,9 +17,9 @@ namespace BlurayDreamsAPI.BusinessModels
 
         public ProdutoModel Produto { get; set; }
 
-        public CarrinhoProdutos toEntity()
+        public CarrinhoProduto toEntity()
         {
-            return new CarrinhoProdutos
+            return new CarrinhoProduto
             {
                 Id = Id,
                 CarrinhoId = CarrinhoId,

@@ -9,7 +9,7 @@ namespace BlurayDreamsAPI.BusinessModels
         public int ClienteId { get; set; }
         public int EnderecoCobrancaId { get; set; }
         public int EnderecoEntregaId { get; set; }
-        public int CartaoID { get; set; }
+        public int CartaoCreditoId { get; set; }
         public double Desconto { get; set; }
         public double Frete { get; set; }
         public double PrecoFinal { get; set; }
@@ -23,7 +23,7 @@ namespace BlurayDreamsAPI.BusinessModels
         [JsonIgnore]
         public virtual CartaoCredito? cartaoCredito { get; set; }
         [JsonIgnore]
-        public List<ProdutoModel>? Produtos { get; set; }
+        public List<PedidoProdutoModel>? PedidoProdutos { get; set; }
 
         public Pedido toEntity()
         {
@@ -33,7 +33,7 @@ namespace BlurayDreamsAPI.BusinessModels
                 ClienteId = ClienteId,
                 EnderecoCobrancaId = EnderecoCobrancaId,
                 EnderecoEntregaId = EnderecoEntregaId,
-                CartaoID = CartaoID,
+                CartaoCreditoId = CartaoCreditoId,
                 Desconto = Desconto,
                 Frete = Frete,
                 PrecoFinal = PrecoFinal,
@@ -42,8 +42,7 @@ namespace BlurayDreamsAPI.BusinessModels
                 enderecoCobranca = null,
                 enderecoEntrega = null,
                 cartaoCredito = null,
-                Produtos = Produtos != null ? Produtos.Select(x => x.toEntity()).ToList() : new List<Produto>(),
-
+                PedidoProdutos= PedidoProdutos != null ? PedidoProdutos.Select(x => x.toEntity()).ToList() : new List<PedidoProduto>(),
             };
         }
     }

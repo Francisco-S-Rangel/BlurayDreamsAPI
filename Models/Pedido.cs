@@ -20,7 +20,7 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public int EnderecoEntregaId { get; set; }
         [Required]
-        public int CartaoID { get; set; }
+        public int CartaoCreditoId { get; set; }
         [Required]
         public double Desconto { get; set; }
         [Required]
@@ -42,7 +42,7 @@ namespace BlurayDreamsAPI.Models
         [JsonIgnore]
         public virtual CartaoCredito cartaoCredito { get; set; }
         [JsonIgnore]
-        public List<Produto> Produtos { get; set; }
+        public List<PedidoProduto> PedidoProdutos { get; set; }
 
 
     }
