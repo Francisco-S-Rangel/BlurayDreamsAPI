@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlurayDreamsAPI.BusinessModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -16,11 +17,11 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public string Img { get; set; }
         [Required]
-        public string tipo { get; set; }
+        public string Tipo { get; set; }
         [Required]
         public string Categoria { get; set; }
         [Required]
-        public string Ano { get; set; }
+        public DateTime Ano { get; set; }
         [Required]
         public string Direcao { get; set; }
         [Required]
@@ -29,6 +30,55 @@ namespace BlurayDreamsAPI.Models
         public string Produtora { get; set; }
         [Required]
         public string Sinopse { get; set; }
+        [Required]
+        public Boolean Status { get; set; }
+        [Required]
+        public double Preco { get; set; }
+        [Required]
+        public int Estoque { get; set; }
+
+        public Produto() { }
+        public Produto(int id,string titulo,string img,string tipo,string categoria,
+            DateTime ano, string direcao,string duracao,string produtora, string sinopse, Boolean status, double preco
+            , int estoque)
+        {
+            this.Id = id;
+            this.Titulo = titulo;
+            this.Img = img;
+            this.Tipo = tipo;
+            this.Categoria = categoria;
+            this.Ano = ano;
+            this.Direcao = direcao;
+            this.Duracao = duracao;
+            this.Produtora = produtora;
+            this.Sinopse = sinopse;
+            this.Status = status;
+            this.Preco = preco;
+            this.Estoque = estoque;
+
+        }
+
+            public ProdutoModel toModel()
+        {
+            return new ProdutoModel
+            {
+                Id = Id,
+                Titulo = Titulo,
+                Img = Img,
+                Tipo = Tipo,
+                Categoria = Categoria,
+                Ano = Ano,
+                Direcao = Direcao,
+                Duracao = Duracao,
+                Produtora = Produtora,
+                Sinopse = Sinopse,
+                Status = Status,
+                Preco = Preco,
+                Estoque = Estoque
+             
+
+            };
+        }
 
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlurayDreamsAPI.BusinessModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,5 +22,22 @@ namespace BlurayDreamsAPI.Models
         public string CVV { get; set; }
         [Required]
         public string NomeTitular { get; set; }
+
+        public virtual Cliente? cliente { get; set; }
+
+        public CartaoCreditoModel toModel()
+        {
+            return new CartaoCreditoModel
+            {
+                Id = Id,
+                ClienteId = ClienteId,
+                NumeroCartao = NumeroCartao,
+                BandeiraCartao = BandeiraCartao,
+                CVV = CVV,
+                NomeTitular = NomeTitular,
+                cliente = null,
+
+            };
+        }
     }
 }

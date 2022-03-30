@@ -21,5 +21,12 @@ namespace BlurayDreamsAPI.Context
         public DbSet<EnderecoEntrega> EnderecoEntregas { get; set; }
         public DbSet<CartaoCredito> CartaoCreditos { get; set; }
         public DbSet<BandeiraCartao> BandeiraCartaos { get; set; }
+        public DbSet<Produto> Produtos { get; set; }
+        public DbSet<BlurayDreamsAPI.Models.Carrinho> Carrinho { get; set; }
+        public DbSet<BlurayDreamsAPI.Models.Pedido> Pedido { get; set; }
+        public DbSet<CarrinhoProdutos> CarrinhoProdutos { get;set; }
+        public DbSet<BlurayDreamsAPI.Models.Funcionario> Funcionario { get; set; }
+        public DbSet<BlurayDreamsAPI.Models.Endereco> Endereco { get; set; }
+        public DbSet<PedidoProduto> PedidoProdutos { get; set; }
     }
 }
