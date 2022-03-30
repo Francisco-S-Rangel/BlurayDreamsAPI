@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BlurayDreamsAPI.Migrations
 {
-    public partial class Create : Migration
+    public partial class CriacaoInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,13 +30,14 @@ namespace BlurayDreamsAPI.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Nome = table.Column<string>(type: "text", nullable: false),
-                    DataNascimento = table.Column<string>(type: "text", nullable: false),
+                    DataNascimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DDD = table.Column<string>(type: "text", nullable: false),
                     Telefone = table.Column<string>(type: "text", nullable: false),
                     TipoTelefone = table.Column<string>(type: "text", nullable: false),
                     CPF = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    Senha = table.Column<string>(type: "text", nullable: false)
+                    Senha = table.Column<string>(type: "text", nullable: false),
+                    Status = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {

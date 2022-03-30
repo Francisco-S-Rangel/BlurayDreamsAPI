@@ -67,7 +67,7 @@ namespace BlurayDreamsAPI.Migrations
                     b.ToTable("Carrinho");
                 });
 
-            modelBuilder.Entity("BlurayDreamsAPI.Models.CarrinhoProdutos", b =>
+            modelBuilder.Entity("BlurayDreamsAPI.Models.CarrinhoProduto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -143,9 +143,8 @@ namespace BlurayDreamsAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("DataNascimento")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -158,6 +157,9 @@ namespace BlurayDreamsAPI.Migrations
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Telefone")
                         .IsRequired()
@@ -529,7 +531,7 @@ namespace BlurayDreamsAPI.Migrations
                     b.Navigation("cliente");
                 });
 
-            modelBuilder.Entity("BlurayDreamsAPI.Models.CarrinhoProdutos", b =>
+            modelBuilder.Entity("BlurayDreamsAPI.Models.CarrinhoProduto", b =>
                 {
                     b.HasOne("BlurayDreamsAPI.Models.Carrinho", "Carrinho")
                         .WithMany("CarrinhoProduto")

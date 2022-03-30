@@ -139,7 +139,7 @@ namespace BlurayDreamsAPI.Controllers
             //todo validar se tem produto no carrinho
             var carrinho = _context.Carrinho.Where(x => x.ClienteId == clienteId).FirstOrDefault();
 
-            var carrinhoProduto = new CarrinhoProdutos()
+            var carrinhoProduto = new CarrinhoProduto()
             {
                 ProdutoId = request.produtoId,
                 Quantidade = request.quantidade,

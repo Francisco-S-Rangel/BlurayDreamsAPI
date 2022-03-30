@@ -25,7 +25,7 @@ namespace BlurayDreamsAPI.BusinessModels
                 PrecoFinal = PrecoFinal,
                 Frete = Frete,
                 cliente = null,
-                CarrinhoProduto = CarrinhoProduto != null ? CarrinhoProduto.Select(x => x.toEntity()).ToList() : new List<CarrinhoProdutos>(),
+                CarrinhoProduto = CarrinhoProduto != null ? CarrinhoProduto.Select(x => x.toEntity()).ToList() : new List<CarrinhoProduto>(),
 
             };
 
