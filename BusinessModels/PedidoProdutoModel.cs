@@ -8,8 +8,8 @@ namespace BlurayDreamsAPI.BusinessModels
         public int PedidoId { get; set; }
         public int ProdutoId { get; set; }
         public int quantidade { get; set; }
-        public PedidoModel Pedido { get; set; }
-        public ProdutoModel Produto { get; set; }
+        public PedidoModel? Pedido { get; set; }
+        public ProdutoModel? Produto { get; set; }
 
         public PedidoProduto toEntity()
         {

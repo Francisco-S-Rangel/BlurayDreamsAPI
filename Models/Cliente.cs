@@ -15,7 +15,7 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public string Nome { get; set; }
         [Required]
-        public string DataNascimento { get; set; }
+        public DateTime DataNascimento { get; set; }
         [Required]
         public string DDD { get; set; }
         [Required]
@@ -28,6 +28,8 @@ namespace BlurayDreamsAPI.Models
         public string Email { get; set; }
         [Required]
         public string Senha { get; set; }
+        [Required]
+        public Boolean Status { get; set; }
 
         public Carrinho carrinho { get; set; }
    
