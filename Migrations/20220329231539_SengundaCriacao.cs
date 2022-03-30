@@ -4,7 +4,7 @@
 
 namespace BlurayDreamsAPI.Migrations
 {
-    public partial class segunda : Migration
+    public partial class SengundaCriacao : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
