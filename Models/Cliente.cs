@@ -29,7 +29,10 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public string Senha { get; set; }
         [Required]
+        public int CupomTroca { get; set; }
+        [Required]
         public Boolean Status { get; set; }
+
 
         public Carrinho carrinho { get; set; }
    
