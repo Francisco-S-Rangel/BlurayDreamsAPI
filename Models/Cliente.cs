@@ -37,6 +37,8 @@ namespace BlurayDreamsAPI.Models
         public List<EnderecoEntrega> EnderecoEntregas { get; set; }
         public List<CartaoCredito>? CartaoCreditos { get; set; }
         public List<Pedido>? Pedidos { get; set; }
+        public List<AtivacaoCliente>? AtivacaoClientes { get; set; }
+        public List<DesativacaoCliente>? DesativacaoClientes { get; set; }
 
     }
 

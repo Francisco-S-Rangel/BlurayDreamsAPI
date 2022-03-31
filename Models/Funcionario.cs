@@ -31,5 +31,8 @@ namespace BlurayDreamsAPI.Models
         public Boolean Status { get; set; }
 
         public Endereco Endereco { get; set;}
+
+        public List<AtivacaoFuncionario>? AtivacaoFuncionarios { get; set; }
+        public List<DesativacaoFuncionario>? DesativacaoFuncionarios { get; set; }
     }
 }
