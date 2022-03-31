@@ -4,7 +4,7 @@ namespace BlurayDreamsAPI.Models
 {
     public class CarrinhoProduto
     {
-        [key]
+        [Key]
         public int Id { get; set; }
         [Required]
         public int CarrinhoId { get; set; }

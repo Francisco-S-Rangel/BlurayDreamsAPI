@@ -28,5 +28,10 @@ namespace BlurayDreamsAPI.Context
         public DbSet<BlurayDreamsAPI.Models.Funcionario> Funcionario { get; set; }
         public DbSet<BlurayDreamsAPI.Models.Endereco> Endereco { get; set; }
         public DbSet<PedidoProduto> PedidoProdutos { get; set; }
+        public DbSet<AtivacaoCliente> AtivacaoClientes { get; set; }
+        public DbSet<DesativacaoCliente> DesativacaoClientes { get; set; }
+        public DbSet<AtivacaoFuncionario> AtivacaoFuncionarios { get; set; }
+        public DbSet<DesativacaoFuncionario> DesativacaoFuncionarios { get; set; }
+
     }
 }
