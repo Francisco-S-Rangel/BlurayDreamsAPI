@@ -45,5 +45,6 @@ namespace BlurayDreamsAPI.BusinessModels
                 PedidoProdutos= PedidoProdutos != null ? PedidoProdutos.Select(x => x.toEntity()).ToList() : new List<PedidoProduto>(),
             };
         }
+
     }
 }

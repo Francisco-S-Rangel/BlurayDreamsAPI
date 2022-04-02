@@ -3,6 +3,7 @@ using System;
 using BlurayDreamsAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,13 +12,14 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BlurayDreamsAPI.Migrations
 {
     [DbContext(typeof(BlurayDreamsContexto))]
-    partial class BlurayDreamsContextoModelSnapshot : ModelSnapshot
+    [Migration("20220331000223_SegundaCriacao")]
+    partial class SegundaCriacao
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -182,9 +184,6 @@ namespace BlurayDreamsAPI.Migrations
                     b.Property<string>("CPF")
                         .IsRequired()
                         .HasColumnType("text");
-
-                    b.Property<int>("CupomTroca")
-                        .HasColumnType("integer");
 
                     b.Property<string>("DDD")
                         .IsRequired()
@@ -541,9 +540,6 @@ namespace BlurayDreamsAPI.Migrations
 
                     b.Property<int>("ProdutoId")
                         .HasColumnType("integer");
-
-                    b.Property<double>("precoProduto")
-                        .HasColumnType("double precision");
 
                     b.Property<int>("quantidade")
                         .HasColumnType("integer");
