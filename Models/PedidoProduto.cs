@@ -18,6 +18,8 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public int quantidade { get; set; }
         [Required]
+        public double precoProduto { get; set; }
+        [Required]
         public Pedido Pedido { get; set; }
         public Produto Produto { get; set; }
     }
