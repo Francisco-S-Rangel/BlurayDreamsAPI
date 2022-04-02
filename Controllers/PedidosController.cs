@@ -106,11 +106,27 @@ namespace BlurayDreamsAPI.Controllers
         {
             return _context.Pedido.Any(e => e.Id == id);
         }
-
-        [HttpGet("{clienteid}/produtos/")]
+        
+        [Route("{clienteId}/cliente")]
+        [HttpGet]
         public IActionResult GetPedidoProduto(int clienteId)
         {
-            var pedidos = _context.Pedido.Where(x=> x.ClienteId == clienteId).ToArray();
+            var pedidos = _context.Pedido.Where(x=> x.ClienteId == clienteId)
+                                        .Include(x => x.PedidoProdutos)
+                                        .Select(x => new 
+                                        {
+                                            ClienteId = x.ClienteId,
+                                            Id = x.Id,
+                                            EnderecoEntregaId = x.EnderecoEntregaId,
+                                            EnderecoCobrancaId = x.EnderecoCobrancaId,
+                                            CartaoCreditoId = x.CartaoCreditoId,
+                                            Desconto = x.Desconto,
+                                            Frete = x.Frete,
+                                            PrecoFinal = x.PrecoFinal,
+                                            Status = x.Status,
+                                            PedidoProdutos = x.PedidoProdutos
+                                        })
+                                        .ToArray();
             return Ok(pedidos);
 
         }
