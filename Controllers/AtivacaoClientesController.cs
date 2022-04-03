@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BlurayDreamsAPI.Context;
 using BlurayDreamsAPI.Models;
+using BlurayDreamsAPI.BusinessModels;
 
 namespace BlurayDreamsAPI.Controllers
 {
@@ -46,14 +47,14 @@ namespace BlurayDreamsAPI.Controllers
         // PUT: api/AtivacaoClientes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAtivacaoCliente(int id, AtivacaoCliente ativacaoCliente)
+        public async Task<IActionResult> PutAtivacaoCliente(int id, AtivacaoClienteModel ativacaoCliente)
         {
             if (id != ativacaoCliente.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(ativacaoCliente).State = EntityState.Modified;
+            _context.Entry(ativacaoCliente.toEntity()).State = EntityState.Modified;
 
             try
             {
@@ -77,9 +78,9 @@ namespace BlurayDreamsAPI.Controllers
         // POST: api/AtivacaoClientes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<AtivacaoCliente>> PostAtivacaoCliente(AtivacaoCliente ativacaoCliente)
+        public async Task<ActionResult<AtivacaoCliente>> PostAtivacaoCliente(AtivacaoClienteModel ativacaoCliente)
         {
-            _context.AtivacaoClientes.Add(ativacaoCliente);
+            _context.AtivacaoClientes.Add(ativacaoCliente.toEntity());
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetAtivacaoCliente", new { id = ativacaoCliente.Id }, ativacaoCliente);
