@@ -16,11 +16,11 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public int ClienteId { get; set; }
         [Required]
-        public int EnderecoCobrancaId { get; set; }
+        public int? EnderecoCobrancaId { get; set; }
         [Required]
-        public int EnderecoEntregaId { get; set; }
+        public int? EnderecoEntregaId { get; set; }
         [Required]
-        public int CartaoCreditoId { get; set; }
+        public int? CartaoCreditoId { get; set; }
         [Required]
         public double Desconto { get; set; }
         [Required]
