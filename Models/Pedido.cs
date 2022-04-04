@@ -34,13 +34,13 @@ namespace BlurayDreamsAPI.Models
         public virtual Cliente cliente { get; set; }
         [Required]
         [JsonIgnore]
-        public virtual EnderecoCobranca enderecoCobranca { get; set; }
+        public virtual EnderecoCobranca? enderecoCobranca { get; set; }
         [Required]
         [JsonIgnore]
-        public virtual EnderecoEntrega enderecoEntrega { get; set; }
+        public virtual EnderecoEntrega? enderecoEntrega { get; set; }
         [Required]
         [JsonIgnore]
-        public virtual CartaoCredito cartaoCredito { get; set; }
+        public virtual CartaoCredito? cartaoCredito { get; set; }
         [JsonIgnore]
         public List<PedidoProduto> PedidoProdutos { get; set; }
 
