@@ -7,9 +7,9 @@ namespace BlurayDreamsAPI.BusinessModels
     {
         public int Id { get; set; }
         public int ClienteId { get; set; }
-        public int EnderecoCobrancaId { get; set; }
-        public int EnderecoEntregaId { get; set; }
-        public int CartaoCreditoId { get; set; }
+        public int? EnderecoCobrancaId { get; set; }
+        public int? EnderecoEntregaId { get; set; }
+        public int? CartaoCreditoId { get; set; }
         public double Desconto { get; set; }
         public double Frete { get; set; }
         public double PrecoFinal { get; set; }
