@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using BlurayDreamsAPI.Context;
 using BlurayDreamsAPI.Models;
 using BlurayDreamsAPI.BusinessModels;
+using BlurayDreamsAPI.Utilities;
 
 namespace BlurayDreamsAPI.Controllers
 {
@@ -129,6 +130,27 @@ namespace BlurayDreamsAPI.Controllers
                                         .ToArray();
             return Ok(pedidos);
 
+        }
+
+        [Route("{clienteId}/troca")]
+        [HttpPost]
+        public IActionResult PostTroca(int clienteId,[FromBody] List<TrocaRequest> request)
+        {
+            var trocas = request.Select(x => new Troca
+            {
+                Id = 0,
+                ClienteId = clienteId,
+                PedidoProdutoId = x.PedidoProdutoId,
+                Quantidade = x.Quantidadde,
+                Status = StatusTroca.EmTroca,
+                RecebimentoProduto = false,
+
+            }).ToList();
+
+            _context.Trocas.AddRange(trocas);
+            _context.SaveChanges();
+
+            return Ok();
         }
     }
 }

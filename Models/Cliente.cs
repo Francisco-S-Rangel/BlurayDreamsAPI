@@ -31,6 +31,8 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public int CupomTroca { get; set; }
         [Required]
+        public double Credito { get; set; }
+        [Required]
         public Boolean Status { get; set; }
 
 

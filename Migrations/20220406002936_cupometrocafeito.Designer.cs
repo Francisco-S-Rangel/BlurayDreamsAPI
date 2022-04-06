@@ -3,6 +3,7 @@ using System;
 using BlurayDreamsAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BlurayDreamsAPI.Migrations
 {
     [DbContext(typeof(BlurayDreamsContexto))]
-    partial class BlurayDreamsContextoModelSnapshot : ModelSnapshot
+    [Migration("20220406002936_cupometrocafeito")]
+    partial class cupometrocafeito
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -664,9 +666,8 @@ namespace BlurayDreamsAPI.Migrations
                     b.Property<bool>("RecebimentoProduto")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<bool>("Status")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 

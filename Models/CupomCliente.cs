@@ -7,22 +7,16 @@ using System.Threading.Tasks;
 
 namespace BlurayDreamsAPI.Models
 {
-    public class Troca
+    public class CupomCliente
     {
         [Key]
         public int Id { get; set; }
         [Required]
         public int ClienteId { get; set; }
         [Required]
-        public int PedidoProdutoId { get; set; }
-        [Required]
-        public string Status { get; set; }
-        [Required]
-        public Boolean RecebimentoProduto { get; set; }
-        [Required]
-        public int Quantidade { get; set; }
+        public int CupomId { get; set; }
 
         public Cliente Cliente { get; set; }
-        public PedidoProduto PedidoProduto { get; set; }
+        public Cupom Cupom { get; set; }
     }
 }

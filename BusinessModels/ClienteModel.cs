@@ -15,6 +15,7 @@ namespace BlurayDreamsAPI.BusinessModels
             public string Email { get; set; }
             public string Senha { get; set; }
             public int CupomTroca { get; set; }
+            public double Credito { get; set; }
             public Boolean Status { get; set; }
 
             [JsonIgnore]
@@ -38,6 +39,7 @@ namespace BlurayDreamsAPI.BusinessModels
                 Email = Email,
                 Senha = Senha,
                 CupomTroca = CupomTroca == 0 ? 0 : CupomTroca,
+                Credito = Credito == 0 ? 0 : Credito,
                 Status = Status,
                 carrinho = new Carrinho(Id),
                 EnderecoCobrancas = EnderecoCobrancas != null ? EnderecoCobrancas.Select(x => x.toEntity()).ToList() : new List<EnderecoCobranca>(),
