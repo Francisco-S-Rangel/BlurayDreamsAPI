@@ -7,6 +7,7 @@ namespace BlurayDreamsAPI.BusinessModels
     {
         public int Id { get; set; }
         public int ClienteId { get; set; }
+        public int PedidoId { get; set; }
         public int PedidoProdutoId { get; set; }
         public string Status { get; set; }
         public Boolean RecebimentoProduto { get; set; }
@@ -16,6 +17,8 @@ namespace BlurayDreamsAPI.BusinessModels
         public ClienteModel? Cliente { get; set; }
         [JsonIgnore]
         public PedidoProdutoModel? PedidoProduto { get; set; }
+        [JsonIgnore]
+        public PedidoModel? Pedido { get; set; }
 
         public Troca toEntity()
         {
@@ -29,6 +32,7 @@ namespace BlurayDreamsAPI.BusinessModels
                 Quantidade = Quantidade,
                 Cliente = null,
                 PedidoProduto = null,
+                Pedido = null,
 
             };
         }

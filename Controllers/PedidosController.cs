@@ -140,6 +140,7 @@ namespace BlurayDreamsAPI.Controllers
             {
                 Id = 0,
                 ClienteId = clienteId,
+                PedidoId = x.PedidoId,
                 PedidoProdutoId = x.PedidoProdutoId,
                 Quantidade = x.Quantidadde,
                 Status = StatusTroca.EmTroca,
