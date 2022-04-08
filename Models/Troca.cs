@@ -14,6 +14,8 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public int ClienteId { get; set; }
         [Required]
+        public int PedidoId { get; set; }
+        [Required]
         public int PedidoProdutoId { get; set; }
         [Required]
         public string Status { get; set; }
@@ -24,5 +26,6 @@ namespace BlurayDreamsAPI.Models
 
         public Cliente Cliente { get; set; }
         public PedidoProduto PedidoProduto { get; set; }
+        public Pedido Pedido { get; set; }
     }
 }

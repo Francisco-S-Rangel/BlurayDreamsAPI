@@ -8,6 +8,7 @@
     }
     public class TrocaRequest
     { 
+        public int PedidoId { get; set; }
         public int PedidoProdutoId { get; set; }
         public int Quantidadde { get; set; }
     }
