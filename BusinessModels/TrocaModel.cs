@@ -26,6 +26,7 @@ namespace BlurayDreamsAPI.BusinessModels
             {
                 Id = Id,
                 ClienteId = ClienteId,
+                PedidoId = PedidoId,
                 PedidoProdutoId = PedidoProdutoId,
                 Status = Status,
                 RecebimentoProduto = RecebimentoProduto,
