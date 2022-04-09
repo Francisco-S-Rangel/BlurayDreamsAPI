@@ -137,9 +137,34 @@ namespace BlurayDreamsAPI.Controllers
                 return NotFound();
             }
 
-            //todo validar se tem produto no carrinho
+            
             var carrinho = _context.Carrinho.Where(x => x.ClienteId == clienteId).FirstOrDefault();
 
+            var carrinhoProduto = _context.CarrinhoProdutos.Where(x => x.ProdutoId == request.produtoId).FirstOrDefault();
+
+            if(carrinhoProduto == null)
+            {
+                 carrinhoProduto = new CarrinhoProduto()
+                {
+                    ProdutoId = request.produtoId,
+                    Quantidade = request.quantidade,
+                    Carrinho = carrinho,
+                    CarrinhoId = carrinho.Id,
+                    Produto = produto,
+                };
+
+                _context.CarrinhoProdutos.Add(carrinhoProduto);
+                _context.SaveChanges();
+
+                return Ok();
+            }
+
+            carrinhoProduto.Quantidade = request.quantidade;
+
+            _context.Entry(carrinhoProduto).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            /*
             var carrinhoProduto = new CarrinhoProduto()
             {
                 ProdutoId = request.produtoId,
@@ -150,7 +175,7 @@ namespace BlurayDreamsAPI.Controllers
             };
 
             _context.CarrinhoProdutos.Add(carrinhoProduto);
-            _context.SaveChanges();
+            _context.SaveChanges();*/
 
             return Ok();
            

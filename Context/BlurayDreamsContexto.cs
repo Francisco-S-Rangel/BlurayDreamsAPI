@@ -34,6 +34,8 @@ namespace BlurayDreamsAPI.Context
         public DbSet<DesativacaoFuncionario> DesativacaoFuncionarios { get; set; }
         public DbSet<Cupom> Cupoms { get; set; }
         public DbSet<Troca> Trocas { get; set; }
+        public DbSet<AtivacaoProduto> AtivacaoProdutos { get; set; }
+        public DbSet<DesativacaoProduto> DesativacaoProdutos { get; set; }
 
 
     }
