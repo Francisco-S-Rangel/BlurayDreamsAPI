@@ -35,25 +35,7 @@ namespace BlurayDreamsAPI.Models
         [JsonIgnore]
         public virtual Cliente cliente { get; set; }
 
-        public EnderecoCobrancaModel toModel()
-        {
-            return new EnderecoCobrancaModel
-            {
-                Id = Id,
-                ClienteId = ClienteId,
-                CEP = CEP,
-                TipoLogradouro = TipoLogradouro,
-                Logradouro = Logradouro,
-                Bairro = Bairro,
-                Cidade = Cidade,
-                Estado = Estado,
-                Pais = Pais,
-                Numero = Numero,
-                cliente = null,
-                TipoResidencia = TipoResidencia,
-
-            };
-        }
+        
 
     }
     
