@@ -37,6 +37,9 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public int Estoque { get; set; }
 
+        public List<AtivacaoProduto>? AtivacaoProdutos { get; set; }
+        public List<DesativacaoProduto>? DesativacaoProdutos { get; set; }
+
         public Produto() { }
         public Produto(int id,string titulo,string img,string tipo,string categoria,
             DateTime ano, string direcao,string duracao,string produtora, string sinopse, Boolean status, double preco
@@ -56,28 +59,6 @@ namespace BlurayDreamsAPI.Models
             this.Preco = preco;
             this.Estoque = estoque;
 
-        }
-
-            public ProdutoModel toModel()
-        {
-            return new ProdutoModel
-            {
-                Id = Id,
-                Titulo = Titulo,
-                Img = Img,
-                Tipo = Tipo,
-                Categoria = Categoria,
-                Ano = Ano,
-                Direcao = Direcao,
-                Duracao = Duracao,
-                Produtora = Produtora,
-                Sinopse = Sinopse,
-                Status = Status,
-                Preco = Preco,
-                Estoque = Estoque
-             
-
-            };
         }
 
 

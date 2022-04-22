@@ -22,7 +22,7 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public double PrecoFinal { get; set; }
         [JsonIgnore]
-        public virtual Cliente? cliente { get; set; }
+        public virtual Cliente cliente { get; set; }
      
         public List<CarrinhoProduto> CarrinhoProduto { get; set; }
 
