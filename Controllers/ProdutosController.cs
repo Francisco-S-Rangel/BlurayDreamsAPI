@@ -102,9 +102,10 @@ namespace BlurayDreamsAPI.Controllers
         }
         [Route("{titulo}/produto")]
         [HttpGet]
-        public IActionResult GetProdutoporNome(String titulo)
+        public IActionResult GetProdutoporTitulo(String titulo)
         {
-            var produto = _context.Produtos.Where(x => x.Titulo == titulo).ToList();
+
+            var produto = _context.Produtos.Where(x => x.Titulo.ToLower().Contains(titulo.ToLower())).ToList();
 
             return Ok(produto);
         }
