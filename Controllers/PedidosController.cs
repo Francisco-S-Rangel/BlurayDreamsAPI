@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using BlurayDreamsAPI.Context;
 using BlurayDreamsAPI.Models;
 using BlurayDreamsAPI.BusinessModels;
+using BlurayDreamsAPI.Utilities;
 
 namespace BlurayDreamsAPI.Controllers
 {
@@ -105,6 +106,52 @@ namespace BlurayDreamsAPI.Controllers
         private bool PedidoExists(int id)
         {
             return _context.Pedido.Any(e => e.Id == id);
+        }
+        
+        [Route("{clienteId}/cliente")]
+        [HttpGet]
+        public IActionResult GetPedidoProduto(int clienteId)
+        {
+            var pedidos = _context.Pedido.Where(x=> x.ClienteId == clienteId)
+                                        .Include(x => x.PedidoProdutos)
+                                        .Select(x => new 
+                                        {
+                                            ClienteId = x.ClienteId,
+                                            Id = x.Id,
+                                            EnderecoEntregaId = x.EnderecoEntregaId,
+                                            EnderecoCobrancaId = x.EnderecoCobrancaId,
+                                            CartaoCreditoId = x.CartaoCreditoId,
+                                            Desconto = x.Desconto,
+                                            Frete = x.Frete,
+                                            PrecoFinal = x.PrecoFinal,
+                                            Status = x.Status,
+                                            PedidoProdutos = x.PedidoProdutos
+                                        })
+                                        .ToArray();
+            return Ok(pedidos);
+
+        }
+
+        [Route("{clienteId}/troca")]
+        [HttpPost]
+        public IActionResult PostTroca(int clienteId,[FromBody] List<TrocaRequest> request)
+        {
+            var trocas = request.Select(x => new Troca
+            {
+                Id = 0,
+                ClienteId = clienteId,
+                PedidoId = x.PedidoId,
+                PedidoProdutoId = x.PedidoProdutoId,
+                Quantidade = x.Quantidadde,
+                Status = StatusTroca.EmTroca,
+                RecebimentoProduto = false,
+
+            }).ToList();
+
+            _context.Trocas.AddRange(trocas);
+            _context.SaveChanges();
+
+            return Ok();
         }
     }
 }

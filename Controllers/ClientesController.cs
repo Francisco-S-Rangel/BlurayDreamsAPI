@@ -101,6 +101,15 @@ namespace BlurayDreamsAPI.Controllers
 
             return NoContent();
         }
+        [Route("{nome}/cliente")]
+        [HttpGet]
+        public IActionResult GetClienteporNome(String nome)
+        {
+
+            var cliente = _context.Clientes.Where(x => x.Nome.ToLower().Contains(nome.ToLower())).ToList();
+
+            return Ok(cliente);
+        }
 
         private bool ClienteExists(int id)
         {

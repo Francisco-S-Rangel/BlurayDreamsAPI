@@ -23,21 +23,7 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public string NomeTitular { get; set; }
 
-        public virtual Cliente? cliente { get; set; }
+        public virtual Cliente cliente { get; set; }
 
-        public CartaoCreditoModel toModel()
-        {
-            return new CartaoCreditoModel
-            {
-                Id = Id,
-                ClienteId = ClienteId,
-                NumeroCartao = NumeroCartao,
-                BandeiraCartao = BandeiraCartao,
-                CVV = CVV,
-                NomeTitular = NomeTitular,
-                cliente = null,
-
-            };
-        }
     }
 }

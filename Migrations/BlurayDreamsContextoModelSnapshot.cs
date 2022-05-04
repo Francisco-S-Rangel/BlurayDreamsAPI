@@ -17,10 +17,76 @@ namespace BlurayDreamsAPI.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.2")
+                .HasAnnotation("ProductVersion", "6.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.AtivacaoCliente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("MotivoAtivacao")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("AtivacaoClientes");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.AtivacaoFuncionario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("MotivoAtivacao")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FuncionarioId");
+
+                    b.ToTable("AtivacaoFuncionarios");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.AtivacaoProduto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("MotivoAtivacao")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("AtivacaoProdutos");
+                });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.BandeiraCartao", b =>
                 {
@@ -67,7 +133,7 @@ namespace BlurayDreamsAPI.Migrations
                     b.ToTable("Carrinho");
                 });
 
-            modelBuilder.Entity("BlurayDreamsAPI.Models.CarrinhoProdutos", b =>
+            modelBuilder.Entity("BlurayDreamsAPI.Models.CarrinhoProduto", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -139,13 +205,18 @@ namespace BlurayDreamsAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<double>("Credito")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("CupomTroca")
+                        .HasColumnType("integer");
+
                     b.Property<string>("DDD")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("DataNascimento")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -159,6 +230,9 @@ namespace BlurayDreamsAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Telefone")
                         .IsRequired()
                         .HasColumnType("text");
@@ -170,6 +244,96 @@ namespace BlurayDreamsAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.Cupom", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Codigo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double>("TamanhoDesconto")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cupoms");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.DesativacaoCliente", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("MotivoDesativacao")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("DesativacaoClientes");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.DesativacaoFuncionario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("FuncionarioId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("MotivoDesativacao")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FuncionarioId");
+
+                    b.ToTable("DesativacaoFuncionarios");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.DesativacaoProduto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("MotivoDesativacao")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("DesativacaoProdutos");
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Endereco", b =>
@@ -397,7 +561,8 @@ namespace BlurayDreamsAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CartaoID")
+                    b.Property<int?>("CartaoCreditoId")
+                        .IsRequired()
                         .HasColumnType("integer");
 
                     b.Property<int>("ClienteId")
@@ -406,10 +571,12 @@ namespace BlurayDreamsAPI.Migrations
                     b.Property<double>("Desconto")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("EnderecoCobrancaId")
+                    b.Property<int?>("EnderecoCobrancaId")
+                        .IsRequired()
                         .HasColumnType("integer");
 
-                    b.Property<int>("EnderecoEntregaId")
+                    b.Property<int?>("EnderecoEntregaId")
+                        .IsRequired()
                         .HasColumnType("integer");
 
                     b.Property<double>("Frete")
@@ -422,10 +589,9 @@ namespace BlurayDreamsAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("cartaoCreditoId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("CartaoCreditoId");
 
                     b.HasIndex("ClienteId");
 
@@ -433,9 +599,36 @@ namespace BlurayDreamsAPI.Migrations
 
                     b.HasIndex("EnderecoEntregaId");
 
-                    b.HasIndex("cartaoCreditoId");
-
                     b.ToTable("Pedido");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.PedidoProduto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("PedidoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ProdutoId")
+                        .HasColumnType("integer");
+
+                    b.Property<double>("precoProduto")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("quantidade")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PedidoId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("PedidoProdutos");
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Produto", b =>
@@ -468,9 +661,6 @@ namespace BlurayDreamsAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("PedidoId")
-                        .HasColumnType("integer");
-
                     b.Property<double>("Preco")
                         .HasColumnType("double precision");
 
@@ -495,9 +685,78 @@ namespace BlurayDreamsAPI.Migrations
 
                     b.HasKey("Id");
 
+                    b.ToTable("Produtos");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.Troca", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ClienteId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PedidoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("PedidoProdutoId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("RecebimentoProduto")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
                     b.HasIndex("PedidoId");
 
-                    b.ToTable("Produtos");
+                    b.HasIndex("PedidoProdutoId");
+
+                    b.ToTable("Trocas");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.AtivacaoCliente", b =>
+                {
+                    b.HasOne("BlurayDreamsAPI.Models.Cliente", "Cliente")
+                        .WithMany("AtivacaoClientes")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.AtivacaoFuncionario", b =>
+                {
+                    b.HasOne("BlurayDreamsAPI.Models.Funcionario", "Funcionario")
+                        .WithMany("AtivacaoFuncionarios")
+                        .HasForeignKey("FuncionarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Funcionario");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.AtivacaoProduto", b =>
+                {
+                    b.HasOne("BlurayDreamsAPI.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Carrinho", b =>
@@ -511,7 +770,7 @@ namespace BlurayDreamsAPI.Migrations
                     b.Navigation("cliente");
                 });
 
-            modelBuilder.Entity("BlurayDreamsAPI.Models.CarrinhoProdutos", b =>
+            modelBuilder.Entity("BlurayDreamsAPI.Models.CarrinhoProduto", b =>
                 {
                     b.HasOne("BlurayDreamsAPI.Models.Carrinho", "Carrinho")
                         .WithMany("CarrinhoProduto")
@@ -539,6 +798,39 @@ namespace BlurayDreamsAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("cliente");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.DesativacaoCliente", b =>
+                {
+                    b.HasOne("BlurayDreamsAPI.Models.Cliente", "Cliente")
+                        .WithMany("DesativacaoClientes")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.DesativacaoFuncionario", b =>
+                {
+                    b.HasOne("BlurayDreamsAPI.Models.Funcionario", "Funcionario")
+                        .WithMany("DesativacaoFuncionarios")
+                        .HasForeignKey("FuncionarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Funcionario");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.DesativacaoProduto", b =>
+                {
+                    b.HasOne("BlurayDreamsAPI.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Produto");
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Endereco", b =>
@@ -576,6 +868,12 @@ namespace BlurayDreamsAPI.Migrations
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Pedido", b =>
                 {
+                    b.HasOne("BlurayDreamsAPI.Models.CartaoCredito", "cartaoCredito")
+                        .WithMany()
+                        .HasForeignKey("CartaoCreditoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BlurayDreamsAPI.Models.Cliente", "cliente")
                         .WithMany("Pedidos")
                         .HasForeignKey("ClienteId")
@@ -594,12 +892,6 @@ namespace BlurayDreamsAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BlurayDreamsAPI.Models.CartaoCredito", "cartaoCredito")
-                        .WithMany()
-                        .HasForeignKey("cartaoCreditoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("cartaoCredito");
 
                     b.Navigation("cliente");
@@ -609,11 +901,50 @@ namespace BlurayDreamsAPI.Migrations
                     b.Navigation("enderecoEntrega");
                 });
 
-            modelBuilder.Entity("BlurayDreamsAPI.Models.Produto", b =>
+            modelBuilder.Entity("BlurayDreamsAPI.Models.PedidoProduto", b =>
                 {
-                    b.HasOne("BlurayDreamsAPI.Models.Pedido", null)
-                        .WithMany("Produtos")
-                        .HasForeignKey("PedidoId");
+                    b.HasOne("BlurayDreamsAPI.Models.Pedido", "Pedido")
+                        .WithMany("PedidoProdutos")
+                        .HasForeignKey("PedidoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlurayDreamsAPI.Models.Produto", "Produto")
+                        .WithMany()
+                        .HasForeignKey("ProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Pedido");
+
+                    b.Navigation("Produto");
+                });
+
+            modelBuilder.Entity("BlurayDreamsAPI.Models.Troca", b =>
+                {
+                    b.HasOne("BlurayDreamsAPI.Models.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlurayDreamsAPI.Models.Pedido", "Pedido")
+                        .WithMany()
+                        .HasForeignKey("PedidoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BlurayDreamsAPI.Models.PedidoProduto", "PedidoProduto")
+                        .WithMany()
+                        .HasForeignKey("PedidoProdutoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+
+                    b.Navigation("Pedido");
+
+                    b.Navigation("PedidoProduto");
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Carrinho", b =>
@@ -623,7 +954,11 @@ namespace BlurayDreamsAPI.Migrations
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Cliente", b =>
                 {
+                    b.Navigation("AtivacaoClientes");
+
                     b.Navigation("CartaoCreditos");
+
+                    b.Navigation("DesativacaoClientes");
 
                     b.Navigation("EnderecoCobrancas");
 
@@ -637,13 +972,17 @@ namespace BlurayDreamsAPI.Migrations
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Funcionario", b =>
                 {
+                    b.Navigation("AtivacaoFuncionarios");
+
+                    b.Navigation("DesativacaoFuncionarios");
+
                     b.Navigation("Endereco")
                         .IsRequired();
                 });
 
             modelBuilder.Entity("BlurayDreamsAPI.Models.Pedido", b =>
                 {
-                    b.Navigation("Produtos");
+                    b.Navigation("PedidoProdutos");
                 });
 #pragma warning restore 612, 618
         }

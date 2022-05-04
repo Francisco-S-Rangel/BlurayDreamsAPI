@@ -9,7 +9,7 @@ namespace BlurayDreamsAPI.Models
 {
     public class PedidoProduto
     {
-        [key]
+        [Key]
         public int Id { get; set; }
         [Required]
         public int PedidoId { get; set; }
@@ -17,6 +17,8 @@ namespace BlurayDreamsAPI.Models
         public int ProdutoId { get; set; }
         [Required]
         public int quantidade { get; set; }
+        [Required]
+        public double precoProduto { get; set; }
         [Required]
         public Pedido Pedido { get; set; }
         public Produto Produto { get; set; }

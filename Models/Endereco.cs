@@ -34,26 +34,8 @@ namespace BlurayDreamsAPI.Models
         public string Numero { get; set; }
 
         [JsonIgnore]
-        public  Funcionario? Funcionario { get; set; }
+        public  Funcionario Funcionario { get; set; }
 
-        public EnderecoModel toModel()
-        {
-            return new EnderecoModel
-            {
-                Id = Id,
-               FuncionarioId = FuncionarioId,
-                CEP = CEP,
-                TipoLogradouro = TipoLogradouro,
-                Logradouro = Logradouro,
-                Bairro = Bairro,
-                Cidade = Cidade,
-                Estado = Estado,
-                Pais = Pais,
-                Numero = Numero,
-                Funcionario = null,
-                TipoResidencia = TipoResidencia,
-
-            };
-        }
+       
     }
 }

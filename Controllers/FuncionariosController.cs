@@ -101,7 +101,15 @@ namespace BlurayDreamsAPI.Controllers
 
             return NoContent();
         }
+        [Route("{nome}/funcionario")]
+        [HttpGet]
+        public IActionResult GetFuncionarioporNome(String nome)
+        {
 
+            var funcionario = _context.Funcionario.Where(x => x.Nome.ToLower().Contains(nome.ToLower())).ToList();
+
+            return Ok(funcionario);
+        }
         private bool FuncionarioExists(int id)
         {
             return _context.Funcionario.Any(e => e.Id == id);

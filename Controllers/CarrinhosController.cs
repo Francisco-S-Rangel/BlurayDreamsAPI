@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using BlurayDreamsAPI.Context;
 using BlurayDreamsAPI.Models;
 using BlurayDreamsAPI.BusinessModels;
+using BlurayDreamsAPI.Utilities;
 
 namespace BlurayDreamsAPI.Controllers
 {
@@ -136,10 +137,35 @@ namespace BlurayDreamsAPI.Controllers
                 return NotFound();
             }
 
-            //todo validar se tem produto no carrinho
+            
             var carrinho = _context.Carrinho.Where(x => x.ClienteId == clienteId).FirstOrDefault();
 
-            var carrinhoProduto = new CarrinhoProdutos()
+            var carrinhoProduto = _context.CarrinhoProdutos.Where(x => x.ProdutoId == request.produtoId).FirstOrDefault();
+
+            if(carrinhoProduto == null)
+            {
+                 carrinhoProduto = new CarrinhoProduto()
+                {
+                    ProdutoId = request.produtoId,
+                    Quantidade = request.quantidade,
+                    Carrinho = carrinho,
+                    CarrinhoId = carrinho.Id,
+                    Produto = produto,
+                };
+
+                _context.CarrinhoProdutos.Add(carrinhoProduto);
+                _context.SaveChanges();
+
+                return Ok();
+            }
+
+            carrinhoProduto.Quantidade = request.quantidade;
+
+            _context.Entry(carrinhoProduto).State = EntityState.Modified;
+            _context.SaveChanges();
+
+            /*
+            var carrinhoProduto = new CarrinhoProduto()
             {
                 ProdutoId = request.produtoId,
                 Quantidade = request.quantidade,
@@ -149,7 +175,7 @@ namespace BlurayDreamsAPI.Controllers
             };
 
             _context.CarrinhoProdutos.Add(carrinhoProduto);
-            _context.SaveChanges();
+            _context.SaveChanges();*/
 
             return Ok();
            
@@ -163,6 +189,66 @@ namespace BlurayDreamsAPI.Controllers
                 .Where(x => x.ProdutoId == produtoId && x.Carrinho.ClienteId == clienteId).FirstOrDefault();
 
             _context.CarrinhoProdutos.Remove(carrinhoProduto);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Passa do Carrinho para o Pedido
+        /// </summary>
+        [Route("{carrinhoId}/efetivarcompra")]
+        [HttpPost]
+        public IActionResult EfetivaComprar(int carrinhoId, EfetivaCompraRequest request)
+        {
+            var pedido = _context.Carrinho.Where(x => x.Id == carrinhoId)
+              .Include(x => x.CarrinhoProduto)
+                  //O iclude é basicamente um innerjoy (Não usar,apenas em casos bem simples)
+                  .ThenInclude(x => x.Produto)
+              .Select(x => new Pedido
+              {
+                  Id = 0,
+                  ClienteId = x.ClienteId,
+                  Frete = x.Frete,
+                  PrecoFinal = x.PrecoFinal,
+                  Desconto = x.Desconto,
+                  EnderecoCobrancaId = request.EnderecoCobrancaId,
+                  EnderecoEntregaId = request.EnderecoEntregaId,
+                  CartaoCreditoId = request.CartaoId,
+
+                    //PedidoProdutos = x.CarrinhoProduto.Select(y => new PedidoProduto
+                    //{
+                    //    Id = 0,
+                    //    PedidoId = 0,
+                    //    quantidade = y.Quantidade,
+                    //    precoProduto = y.Produto.Preco,
+
+                    //}).ToList(),
+                    Status = StatusPedido.Processamento.ToString(),
+
+
+              }).FirstOrDefault();
+
+            _context.Pedido.Add(pedido);
+            _context.SaveChanges();
+
+
+            var pedidoid = _context.Pedido.Where(x => x.ClienteId == pedido.ClienteId)
+                .Max(x => x.Id);
+
+            var pedidoprodutos = _context.CarrinhoProdutos.Where(x => x.CarrinhoId == carrinhoId)
+              .Include(x => x.Produto)
+              .Select(x => new PedidoProduto
+              {
+                  Id = 0,
+                  PedidoId = pedidoid,
+                  quantidade = x.Quantidade,
+                  precoProduto = x.Produto.Preco,
+                  ProdutoId = x.ProdutoId,
+
+              }).ToList();
+
+            _context.PedidoProdutos.AddRange(pedidoprodutos);
             _context.SaveChanges();
 
             return Ok();

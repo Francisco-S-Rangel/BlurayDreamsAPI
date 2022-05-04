@@ -8,8 +8,9 @@ namespace BlurayDreamsAPI.BusinessModels
         public int PedidoId { get; set; }
         public int ProdutoId { get; set; }
         public int quantidade { get; set; }
-        public PedidoModel Pedido { get; set; }
-        public ProdutoModel Produto { get; set; }
+        public double precoProduto { get; set; }
+        public PedidoModel? Pedido { get; set; }
+        public ProdutoModel? Produto { get; set; }
 
         public PedidoProduto toEntity()
         {
@@ -19,6 +20,7 @@ namespace BlurayDreamsAPI.BusinessModels
                 PedidoId = PedidoId,
                 ProdutoId = ProdutoId,
                 quantidade = quantidade,
+                precoProduto = precoProduto,
                 Pedido = Pedido.toEntity(),
                 Produto = Produto.toEntity()
             };

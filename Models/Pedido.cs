@@ -16,11 +16,11 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public int ClienteId { get; set; }
         [Required]
-        public int EnderecoCobrancaId { get; set; }
+        public int? EnderecoCobrancaId { get; set; }
         [Required]
-        public int EnderecoEntregaId { get; set; }
+        public int? EnderecoEntregaId { get; set; }
         [Required]
-        public int CartaoID { get; set; }
+        public int? CartaoCreditoId { get; set; }
         [Required]
         public double Desconto { get; set; }
         [Required]
@@ -34,13 +34,13 @@ namespace BlurayDreamsAPI.Models
         public virtual Cliente cliente { get; set; }
         [Required]
         [JsonIgnore]
-        public virtual EnderecoCobranca enderecoCobranca { get; set; }
+        public virtual EnderecoCobranca? enderecoCobranca { get; set; }
         [Required]
         [JsonIgnore]
-        public virtual EnderecoEntrega enderecoEntrega { get; set; }
+        public virtual EnderecoEntrega? enderecoEntrega { get; set; }
         [Required]
         [JsonIgnore]
-        public virtual CartaoCredito cartaoCredito { get; set; }
+        public virtual CartaoCredito? cartaoCredito { get; set; }
         [JsonIgnore]
         public List<PedidoProduto> PedidoProdutos { get; set; }
 

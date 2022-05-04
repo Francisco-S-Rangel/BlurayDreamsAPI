@@ -29,7 +29,6 @@ namespace BlurayDreamsAPI.Controllers
         {
             return await _context.Produtos.ToListAsync();
         }
-
         // GET: api/Produtos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Produto>> GetProduto(int id)
@@ -100,6 +99,15 @@ namespace BlurayDreamsAPI.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+        [Route("{titulo}/produto")]
+        [HttpGet]
+        public IActionResult GetProdutoporTitulo(String titulo)
+        {
+
+            var produto = _context.Produtos.Where(x => x.Titulo.ToLower().Contains(titulo.ToLower())).ToList();
+
+            return Ok(produto);
         }
 
         private bool ProdutoExists(int id)
