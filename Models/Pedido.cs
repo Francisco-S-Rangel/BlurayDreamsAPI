@@ -22,6 +22,10 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public int? CartaoCreditoId { get; set; }
         [Required]
+        public int? CartaoCreditoId2 { get; set; }
+        [Required]
+        public int? CartaoCreditoId3 { get; set; }
+        [Required]
         public double Desconto { get; set; }
         [Required]
         public double Frete { get; set; }
@@ -30,6 +34,7 @@ namespace BlurayDreamsAPI.Models
         [Required]
         public string Status { get; set; }
         [Required]
+        public DateTime DataPedido { get; set; }
         [JsonIgnore]
         public virtual Cliente cliente { get; set; }
         [Required]

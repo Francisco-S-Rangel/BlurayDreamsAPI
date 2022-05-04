@@ -10,10 +10,13 @@ namespace BlurayDreamsAPI.BusinessModels
         public int? EnderecoCobrancaId { get; set; }
         public int? EnderecoEntregaId { get; set; }
         public int? CartaoCreditoId { get; set; }
+        public int? CartaoCreditoId2 { get; set; }
+        public int? CartaoCreditoId3 { get; set; }
         public double Desconto { get; set; }
         public double Frete { get; set; }
         public double PrecoFinal { get; set; }
         public string Status { get; set; }
+        public DateTime? DataPedido { get; set; }
         [JsonIgnore]
         public virtual Cliente? cliente { get; set; }
         [JsonIgnore]
@@ -34,10 +37,13 @@ namespace BlurayDreamsAPI.BusinessModels
                 EnderecoCobrancaId = EnderecoCobrancaId,
                 EnderecoEntregaId = EnderecoEntregaId,
                 CartaoCreditoId = CartaoCreditoId,
+                CartaoCreditoId2 = CartaoCreditoId2,
+                CartaoCreditoId3 = CartaoCreditoId3,
                 Desconto = Desconto,
                 Frete = Frete,
                 PrecoFinal = PrecoFinal,
                 Status = Status,
+                DataPedido = DateTime.UtcNow.Date,
                 cliente = null,
                 enderecoCobranca = null,
                 enderecoEntrega = null,

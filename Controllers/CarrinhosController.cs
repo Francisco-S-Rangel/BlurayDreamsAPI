@@ -215,6 +215,9 @@ namespace BlurayDreamsAPI.Controllers
                   EnderecoCobrancaId = request.EnderecoCobrancaId,
                   EnderecoEntregaId = request.EnderecoEntregaId,
                   CartaoCreditoId = request.CartaoId,
+                  CartaoCreditoId2 = request.CartaoId2,
+                  CartaoCreditoId3 = request.CartaoId3,
+                  DataPedido = DateTime.UtcNow.Date,
 
                     //PedidoProdutos = x.CarrinhoProduto.Select(y => new PedidoProduto
                     //{
@@ -223,8 +226,8 @@ namespace BlurayDreamsAPI.Controllers
                     //    quantidade = y.Quantidade,
                     //    precoProduto = y.Produto.Preco,
 
-                    //}).ToList(),
-                    Status = StatusPedido.Processamento.ToString(),
+                  //}).ToList(),
+                  Status = StatusPedido.Processamento.ToString(),
 
 
               }).FirstOrDefault();
