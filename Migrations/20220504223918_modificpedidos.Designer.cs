@@ -3,6 +3,7 @@ using System;
 using BlurayDreamsAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BlurayDreamsAPI.Migrations
 {
     [DbContext(typeof(BlurayDreamsContexto))]
-    partial class BlurayDreamsContextoModelSnapshot : ModelSnapshot
+    [Migration("20220504223918_modificpedidos")]
+    partial class modificpedidos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -562,14 +564,6 @@ namespace BlurayDreamsAPI.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CartaoCreditoId")
-                        .IsRequired()
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("CartaoCreditoId2")
-                        .IsRequired()
-                        .HasColumnType("integer");
-
-                    b.Property<int?>("CartaoCreditoId3")
                         .IsRequired()
                         .HasColumnType("integer");
 
