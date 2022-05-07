@@ -155,6 +155,7 @@ namespace BlurayDreamsAPI.Controllers
 
             return Ok();
         }
+
       [Route("dashboard-vendas")]
       [HttpGet]
       public IActionResult pegarCategoriaporData([FromQuery]DateTime dataInit, [FromQuery]DateTime dataFinal)
