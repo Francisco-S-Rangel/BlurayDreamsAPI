@@ -121,7 +121,9 @@ namespace BlurayDreamsAPI.Controllers
                                             EnderecoEntregaId = x.EnderecoEntregaId,
                                             EnderecoCobrancaId = x.EnderecoCobrancaId,
                                             CartaoCreditoId = x.CartaoCreditoId,
-                                            Desconto = x.Desconto,
+                                            CartaoCreditoId2 = x.CartaoCreditoId2,
+                                            CartaoCreditoId3 = x.CartaoCreditoId3,
+                                            DataPedido = x.DataPedido,
                                             Frete = x.Frete,
                                             PrecoFinal = x.PrecoFinal,
                                             Status = x.Status,
@@ -152,6 +154,31 @@ namespace BlurayDreamsAPI.Controllers
             _context.SaveChanges();
 
             return Ok();
+        }
+
+      [Route("dashboard-vendas")]
+      [HttpGet]
+      public IActionResult pegarCategoriaporData([FromQuery]DateTime dataInit, [FromQuery]DateTime dataFinal)
+        {
+
+            var response = _context.PedidoProdutos
+                    .Include(x => x.Pedido)
+                    .Include(x => x.Produto)
+                    .Where(x => x.Pedido.DataPedido >= dataInit && x.Pedido.DataPedido <= dataFinal)
+                    .AsEnumerable()
+                    .GroupBy(x => x.Produto.Categoria)
+                    .Select(x => new
+                    {
+                        Categoria = x.Key,
+                        Valores = x.AsEnumerable().GroupBy(y => new {y.Pedido.DataPedido.Month, y.Pedido.DataPedido.Year }).Select(y => new
+                        {
+                            Data = new DateTime(y.Key.Year, y.Key.Month, 1),
+                            Quantidade = y.Sum(z => z.quantidade)
+                        }).ToList()
+                    }).ToList();
+
+            return Ok(response);
+
         }
     }
 }
