@@ -167,17 +167,44 @@ namespace BlurayDreamsAPI.Controllers
                     .Where(x => x.Pedido.DataPedido >= dataInit && x.Pedido.DataPedido <= dataFinal)
                     .AsEnumerable()
                     .GroupBy(x => x.Produto.Categoria)
-                    .Select(x => new
+                    .Select(x => new RespostaGrafico
                     {
                         Categoria = x.Key,
-                        Valores = x.AsEnumerable().GroupBy(y => new {y.Pedido.DataPedido.Month, y.Pedido.DataPedido.Year }).Select(y => new
+                        Valores = x.AsEnumerable().GroupBy(y => new {y.Pedido.DataPedido.Month, y.Pedido.DataPedido.Year }).Select(y => new Valor
                         {
                             Data = new DateTime(y.Key.Year, y.Key.Month, 1),
                             Quantidade = y.Sum(z => z.quantidade)
                         }).ToList()
                     }).ToList();
 
-            return Ok(response);
+            var dates = new List<DateTime>();
+
+            while (dataInit<=dataFinal)
+            {
+                dates.Add(new DateTime (dataInit.Year,dataInit.Month,1));
+                dataInit = dataInit.AddMonths(1);
+            }
+
+            dates.ForEach(date =>
+            {
+                response.ForEach(res =>
+                {
+                    if (res.Valores.Find(x => x.Data == date) == null)
+                    {
+                        res.Valores.Add(new Valor { Data = date, Quantidade = 0 });
+                    }
+                });
+            });
+
+            response.ForEach(resp =>
+            { 
+                resp.Valores = resp.Valores.OrderBy(x => x.Data).ToList();
+            });
+
+            return Ok(new { 
+                Meses = dates,
+                response = response,
+            });
 
         }
     }
