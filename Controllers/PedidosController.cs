@@ -124,6 +124,7 @@ namespace BlurayDreamsAPI.Controllers
                                             CartaoCreditoId2 = x.CartaoCreditoId2,
                                             CartaoCreditoId3 = x.CartaoCreditoId3,
                                             DataPedido = x.DataPedido,
+                                            Desconto = x.Desconto,
                                             Frete = x.Frete,
                                             PrecoFinal = x.PrecoFinal,
                                             Status = x.Status,
@@ -160,9 +161,12 @@ namespace BlurayDreamsAPI.Controllers
       [HttpGet]
       public IActionResult pegarCategoriaporData([FromQuery]DateTime dataInit, [FromQuery]DateTime dataFinal)
         {
-
+            // Similar ao innerjoin
+            // Traz a entidade Produto
+            // Traz a entidade Pedido
+            // Groupby por Categoria pegando a data separada por mes e ano
             var response = _context.PedidoProdutos
-                    .Include(x => x.Pedido)
+                    .Include(x => x.Pedido) 
                     .Include(x => x.Produto)
                     .Where(x => x.Pedido.DataPedido >= dataInit && x.Pedido.DataPedido <= dataFinal)
                     .AsEnumerable()
@@ -178,13 +182,13 @@ namespace BlurayDreamsAPI.Controllers
                     }).ToList();
 
             var dates = new List<DateTime>();
-
+            // retorna datas de todos os messes entre essas datas
             while (dataInit<=dataFinal)
             {
                 dates.Add(new DateTime (dataInit.Year,dataInit.Month,1));
                 dataInit = dataInit.AddMonths(1);
             }
-
+            //adiciona valores nulo caso existam e transforma em 0 para o banco não entregar errado
             dates.ForEach(date =>
             {
                 response.ForEach(res =>
@@ -195,7 +199,7 @@ namespace BlurayDreamsAPI.Controllers
                     }
                 });
             });
-
+            //ordena os valores
             response.ForEach(resp =>
             { 
                 resp.Valores = resp.Valores.OrderBy(x => x.Data).ToList();
