@@ -102,6 +102,17 @@ namespace BlurayDreamsAPI.Controllers
             return NoContent();
         }
 
+        [Route("{nome}/cliente")]
+        [HttpGet]
+
+        public IActionResult GetTrocaPeloNomeCliente(string nome)
+        {
+            var cliente = _context.Trocas.Include(x => x.Cliente).Where(x => x.Cliente.Nome.ToLower().Contains(nome.ToLower())).ToList();
+
+            return Ok(cliente);
+
+        }
+
         private bool TrocaExists(int id)
         {
             return _context.Trocas.Any(e => e.Id == id);
